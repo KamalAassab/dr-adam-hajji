@@ -66,11 +66,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center gap-6 lg:gap-10 justify-center lg:justify-start lg:ml-[12%] xl:ml-[18%]"
+            className="flex flex-col sm:flex-row items-center gap-5 lg:gap-8 justify-center lg:justify-start lg:ml-[12%] xl:ml-[18%] w-full max-w-xl lg:max-w-none mx-auto lg:mx-0"
           >
             <Link
               href="/contact"
-              className="group relative inline-flex items-center justify-center bg-blue text-white px-10 py-5 rounded-full font-bold text-[16px] transition-all duration-500 hover:bg-navy hover:scale-105 hover:shadow-[0_20px_50px_rgba(53,102,234,0.4)] overflow-hidden w-full sm:w-auto"
+              className="group relative inline-flex items-center justify-center bg-blue text-white px-8 lg:px-10 py-4.5 lg:py-5 rounded-full font-bold text-[15px] lg:text-[16px] transition-all duration-500 hover:bg-navy hover:scale-105 hover:shadow-[0_20px_50px_rgba(53,102,234,0.4)] overflow-hidden w-full sm:w-auto shrink-0"
             >
               {/* Button Shine Effect */}
               <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.8s_ease-out_infinite]" />
@@ -81,21 +81,21 @@ export default function Hero() {
               </span>
             </Link>
 
-            <div className="flex items-center gap-5 bg-white/40 backdrop-blur-md pr-7 p-2.5 rounded-full border border-white/50 shadow-xl transition-all hover:bg-white/60">
-              <div className="flex -space-x-3.5 ml-1.5">
+            <div className="flex items-center gap-4 lg:gap-5 bg-white/40 backdrop-blur-md pr-6 lg:pr-7 p-2 lg:p-2.5 rounded-full border border-white/50 shadow-xl transition-all hover:bg-white/60 w-full sm:w-auto justify-center sm:justify-start">
+              <div className="flex -space-x-3 lg:-space-x-3.5 ml-1">
                 {[
                   "https://randomuser.me/api/portraits/men/32.jpg",
                   "https://randomuser.me/api/portraits/men/44.jpg",
                   "https://randomuser.me/api/portraits/men/55.jpg",
                 ].map((src, i) => (
-                  <div key={i} className="relative w-11 h-11 rounded-full border-[3px] border-white overflow-hidden shadow-md transition-all hover:-translate-y-1.5 hover:z-10 cursor-pointer">
+                  <div key={i} className="relative w-9 h-9 lg:w-11 lg:h-11 rounded-full border-[2px] lg:border-[3px] border-white overflow-hidden shadow-md transition-all hover:-translate-y-1.5 hover:z-10 cursor-pointer">
                     <Image src={src} alt="Customer" fill className="object-cover" />
                   </div>
                 ))}
               </div>
-              <div className="text-left py-1">
-                <strong className="block font-heading font-black text-[18px] leading-none text-navy mb-0.5 tracking-tight">4.9/5 Rating</strong>
-                <span className="text-[12px] text-gray-500 font-bold uppercase tracking-wider">Trusted by Patients</span>
+              <div className="text-left py-0.5 lg:py-1">
+                <strong className="block font-heading font-black text-[16px] lg:text-[18px] leading-none text-navy mb-0.5 tracking-tight whitespace-nowrap">4.9/5 Rating</strong>
+                <span className="text-[10px] lg:text-[12px] text-gray-500 font-bold uppercase tracking-wider whitespace-nowrap">Trusted by Patients</span>
               </div>
             </div>
           </motion.div>
