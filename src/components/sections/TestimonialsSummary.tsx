@@ -103,11 +103,11 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative max-w-[1400px] mx-auto"
+          className="relative max-w-6xl mx-auto px-4"
         >
-          {/* Gradient Edges for Carousel Fading effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
+          {/* Subtle Side Fading Effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F8FAFF] to-transparent z-10 pointer-events-none hidden lg:block" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F8FAFF] to-transparent z-10 pointer-events-none hidden lg:block" />
 
           <Carousel
             opts={{
@@ -122,9 +122,9 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
             ]}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-6 py-8">
+            <CarouselContent className="-ml-6 py-10">
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="pl-6 md:basis-full lg:basis-1/2">
                   <div className="bg-white rounded-3xl p-8 h-full border border-slate-100 shadow-[0_4px_20px_rgba(13,27,75,0.03)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(53,102,234,0.1)] hover:border-blue/20 group relative overflow-hidden flex flex-col">
                     
                     {/* Decorative Background Quote */}
