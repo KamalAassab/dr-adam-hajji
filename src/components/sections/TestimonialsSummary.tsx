@@ -103,15 +103,15 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className="relative max-w-[1400px] mx-auto"
         >
-          {/* Gradient Edges for Carousel Fading effect — Subtle & Responsive */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
+          {/* Gradient Edges for Carousel Fading effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
 
           <Carousel
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
             }}
             plugins={[
@@ -120,40 +120,40 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
                 stopOnInteraction: true,
               }),
             ]}
-            className="w-full relative"
+            className="w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-6 py-12">
+            <CarouselContent className="-ml-4 md:-ml-6 py-8">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div className="bg-white rounded-[32px] p-8 h-full border border-slate-100 shadow-[0_4px_24px_rgba(13,27,75,0.02)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(53,102,234,0.12)] hover:border-blue/20 group relative overflow-hidden flex flex-col">
+                  <div className="bg-white rounded-3xl p-8 h-full border border-slate-100 shadow-[0_4px_20px_rgba(13,27,75,0.03)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(53,102,234,0.1)] hover:border-blue/20 group relative overflow-hidden flex flex-col">
                     
                     {/* Decorative Background Quote */}
-                    <Quote className="absolute top-8 right-8 w-16 h-16 text-blue/5 -rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110" />
+                    <Quote className="absolute top-6 right-6 w-16 h-16 text-blue/5 -rotate-6 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-110" />
                     
                     <div className="flex gap-1 mb-6 relative z-10">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4.5 h-4.5 fill-[#F59E0B] text-[#F59E0B]" />
+                        <Star key={i} className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B]" />
                       ))}
                     </div>
 
-                    <p className={`text-[15px] lg:text-[16px] text-[#475569] leading-[1.75] font-medium mb-10 relative z-10 flex-1 ${testimonial.isArabic ? 'font-arabic text-right text-[17px] leading-loose' : ''}`} dir={testimonial.isArabic ? 'rtl' : 'ltr'}>
+                    <p className={`text-[15px] text-[#475569] leading-[1.7] italic mb-8 relative z-10 flex-1 ${testimonial.isArabic ? 'font-arabic text-right text-[16px]' : ''}`} dir={testimonial.isArabic ? 'rtl' : 'ltr'}>
                       "{testimonial.content}"
                     </p>
 
-                    <div className="flex items-center gap-4 mt-auto relative z-10 pt-7 border-t border-slate-100/80">
-                      <div className="relative shrink-0">
+                    <div className="flex items-center gap-4 mt-auto relative z-10 pt-6 border-t border-slate-100">
+                      <div className="relative">
                         <Image
                           src={testimonial.image}
                           alt={testimonial.name}
-                          width={52}
-                          height={52}
-                          className="rounded-full object-cover shadow-lg border-2 border-white"
+                          width={48}
+                          height={48}
+                          className="rounded-full object-cover shadow-md"
                         />
-                        <div className="absolute inset-[-4px] rounded-full border border-blue/20 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" />
+                        <div className="absolute inset-0 rounded-full border-2 border-blue opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" />
                       </div>
-                      <div className="overflow-hidden">
-                        <h5 className="font-heading text-[17px] font-black text-navy leading-tight truncate">{testimonial.name}</h5>
-                        <span className="text-[13px] font-bold text-blue tracking-wide uppercase">{testimonial.role}</span>
+                      <div>
+                        <h5 className="font-heading text-[16px] font-bold text-navy leading-tight">{testimonial.name}</h5>
+                        <span className="text-[13px] font-medium text-blue">{testimonial.role}</span>
                       </div>
                     </div>
                   </div>
@@ -161,9 +161,9 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
               ))}
             </CarouselContent>
             
-            <div className="hidden md:flex items-center justify-center gap-5 mt-4">
-              <CarouselPrevious className="static translate-y-0 w-13 h-13 bg-white border border-slate-100 shadow-xl text-navy hover:bg-blue hover:text-white hover:border-blue transition-all duration-300" />
-              <CarouselNext className="static translate-y-0 w-13 h-13 bg-white border border-slate-100 shadow-xl text-navy hover:bg-blue hover:text-white hover:border-blue transition-all duration-300" />
+            <div className="hidden md:flex items-center justify-center gap-4 mt-8">
+              <CarouselPrevious className="static translate-y-0 w-12 h-12 bg-white border-none shadow-md text-navy hover:bg-blue hover:text-white transition-all duration-300" />
+              <CarouselNext className="static translate-y-0 w-12 h-12 bg-white border-none shadow-md text-navy hover:bg-blue hover:text-white transition-all duration-300" />
             </div>
           </Carousel>
         </motion.div>
