@@ -115,12 +115,8 @@ export default function Navbar() {
                 x: { duration: 0.5 },
                 boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
               }}
-              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-red-50/50 border border-red-100/50 text-[13px] font-black text-red-600 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 group"
+              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-red-600 border border-red-600 text-[13px] font-black text-white hover:bg-red-50/50 hover:text-red-600 hover:border-red-100/50 transition-all duration-300 group"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600 group-hover:bg-white"></span>
-              </span>
               <span className="tracking-tight uppercase text-[11px] opacity-80">SOS</span>
               0710 100 605
             </motion.a>
@@ -221,13 +217,9 @@ export default function Navbar() {
               >
                 <a
                   href="tel:0710100605"
-                  className="flex items-center justify-center gap-3 py-4 px-5 rounded-2xl bg-red-50 border border-red-100 text-red-600 font-black text-[15px] shadow-[0_4px_12px_rgba(239,68,68,0.1)] active:scale-[0.98] transition-all"
+                  className="flex items-center justify-center gap-3 py-4 px-5 rounded-2xl bg-red-600 border border-red-600 text-white font-black text-[15px] shadow-[0_8px_20px_rgba(239,68,68,0.2)] active:bg-red-50 active:text-red-600 active:scale-[0.98] transition-all"
                 >
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
-                  </span>
-                  <span className="tracking-tight uppercase text-[11px] opacity-70">Emergency SOS</span>
+                  <span className="tracking-tight uppercase text-[11px] opacity-90">Emergency SOS</span>
                   0710 100 605
                 </a>
                 <Link
