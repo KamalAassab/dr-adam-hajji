@@ -14,8 +14,8 @@
   
   --color-navy: #0D1B4B;
   --color-navy-dark: #081236;
-  --color-blue: #4A7BF7;
-  --color-blue-light: #5B9BF8;
+  --color-blue: #3566ea;
+  --color-blue-light: #4B7AF0;
   --color-blue-pale: #EEF2FF;
   --color-blue-bg: #E8EEFF;
   --color-gray-100: #F8FAFF;
@@ -56,7 +56,7 @@
   --card-foreground: #0D1B4B;
   --popover: #ffffff;
   --popover-foreground: #0D1B4B;
-  --primary: #4A7BF7;
+  --primary: #3566ea;
   --primary-foreground: #ffffff;
   --secondary: #E8EEFF;
   --secondary-foreground: #0D1B4B;
@@ -68,7 +68,7 @@
   --destructive-foreground: oklch(0.985 0 0);
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #4A7BF7;
+  --ring: #3566ea;
   --radius: 0.625rem;
 }
 

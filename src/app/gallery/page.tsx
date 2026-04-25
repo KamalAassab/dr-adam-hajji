@@ -2,6 +2,7 @@
 
 import PageHeader from "@/components/layout/PageHeader";
 import GallerySummary from "@/components/sections/GallerySummary";
+import TestimonialsSummary from "@/components/sections/TestimonialsSummary";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
@@ -11,6 +12,8 @@ export default function GalleryPage() {
     <>
       <PageHeader title="Our Clinic Gallery" breadcrumb="Gallery" />
       <GallerySummary hideLink={true} />
+      
+      <TestimonialsSummary hideLink={true} />
       
       <section className="py-20 lg:py-24 bg-navy relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
@@ -54,7 +57,7 @@ export default function GalleryPage() {
           >
             <Link
               href="/contact"
-              className="group inline-flex items-center justify-center bg-blue text-white px-8 py-4 rounded-full font-bold text-[16px] transition-all duration-300 hover:bg-white hover:text-navy hover:scale-105 hover:shadow-[0_12px_30px_rgba(74,123,247,0.3)]"
+              className="group inline-flex items-center justify-center bg-blue text-white px-8 py-4 rounded-full font-bold text-[16px] transition-all duration-300 hover:bg-white hover:text-navy hover:scale-105 hover:shadow-[0_12px_30px_rgba(53,102,234,0.3)]"
             >
               Book an Appointment
               <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Send, MapPin, Phone, Mail, Clock, HeartPulse, Navigation } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,9 @@ export default function ContactSummary() {
   return (
     <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
       {/* Background Decor */}
+      <div className="absolute inset-0 z-0">
+        <Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop" alt="Contact Background" fill className="object-cover opacity-[0.03] pointer-events-none" />
+      </div>
       <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue/5 rounded-full blur-[100px] opacity-80 pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-blue/5 rounded-full blur-[80px] opacity-80 pointer-events-none" />
 
@@ -47,7 +51,7 @@ export default function ContactSummary() {
               <span className="text-[13px] font-bold text-blue tracking-[0.06em] uppercase">Contact Us</span>
             </div>
             <h2 className="font-heading text-[clamp(32px,5vw,48px)] font-black text-navy leading-[1.1] tracking-tight mb-6">
-              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2B5DE4]">Touch</span>
+              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">Touch</span>
             </h2>
             <p className="text-[16px] text-[#475569] leading-[1.8] font-medium mb-10 max-w-[420px]">
               We're here to help you achieve the perfect smile. Contact our team to book an appointment or ask any questions you may have.
@@ -142,7 +146,7 @@ export default function ContactSummary() {
                 type="submit"
                 disabled={status === "submitting" || status === "success"}
                 className={`group h-14 text-[16px] font-bold rounded-xl mt-4 transition-all duration-300 relative overflow-hidden ${
-                  status === "success" ? "bg-green-500 hover:bg-green-600 shadow-lg shadow-green-500/20" : "bg-navy hover:bg-blue shadow-lg shadow-blue/20 hover:-translate-y-1"
+                  status === "success" ? "bg-green-500 hover:bg-green-600 shadow-lg shadow-green-500/20" : "bg-blue hover:bg-navy shadow-lg shadow-blue/20 hover:-translate-y-1"
                 }`}
               >
                 {status === "idle" && <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-out_infinite]" />}

@@ -66,23 +66,17 @@ const testimonials = [
 
 export default function TestimonialsSummary({ hideLink = false }: { hideLink?: boolean }) {
   return (
-    <section className="py-24 lg:py-32 bg-[#F8FAFF] relative overflow-hidden">
-      {/* Decorative Blur Orbs */}
+    <section className="py-16 lg:py-20 bg-[#F8FAFF] relative overflow-hidden">
+      {/* Decorative Blur Orbs & Background */}
+      <div className="absolute inset-0 z-0">
+        <Image src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2000&auto=format&fit=crop" alt="Testimonials Background" fill className="object-cover opacity-[0.03] pointer-events-none" />
+      </div>
       <div className="absolute top-0 right-[-10%] w-96 h-96 bg-blue/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-[-10%] w-96 h-96 bg-blue/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16 lg:mb-20 max-w-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue/5 border border-blue/10 mb-6"
-          >
-            <span className="w-2 h-2 rounded-full bg-blue" />
-            <span className="text-[13px] font-bold text-blue tracking-[0.06em] uppercase">Testimonials</span>
-          </motion.div>
-          
+        <div className="text-center mb-10 lg:mb-14 max-w-2xl mx-auto">
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +84,7 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
             transition={{ delay: 0.1, duration: 0.7 }}
             className="font-heading text-[clamp(32px,5vw,48px)] font-black text-navy leading-[1.1] tracking-tight mb-6"
           >
-            Loved By <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2B5DE4]">Thousands</span>
+            Loved By <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">Thousands</span>
           </motion.h2>
           
           <motion.p
@@ -131,7 +125,7 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
             <CarouselContent className="-ml-4 md:-ml-6 py-8">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div className="bg-white rounded-3xl p-8 h-full border border-slate-100 shadow-[0_4px_20px_rgba(13,27,75,0.03)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(74,123,247,0.1)] hover:border-blue/20 group relative overflow-hidden flex flex-col">
+                  <div className="bg-white rounded-3xl p-8 h-full border border-slate-100 shadow-[0_4px_20px_rgba(13,27,75,0.03)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(53,102,234,0.1)] hover:border-blue/20 group relative overflow-hidden flex flex-col">
                     
                     {/* Decorative Background Quote */}
                     <Quote className="absolute top-6 right-6 w-16 h-16 text-blue/5 -rotate-6 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-110" />
@@ -179,7 +173,7 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 lg:mt-12 relative z-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 lg:mt-10 relative z-20"
         >
           {!hideLink && (
             <Link
@@ -197,7 +191,7 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
             href="https://www.google.com/maps/place/Centre+dentaire+ADAM/@33.2365347,-8.523883,18z/data=!4m18!1m9!3m8!1s0xda91db23c98cb57:0xafdc09145c6e6726!2sCentre+dentaire+ADAM!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!3m7!1s0xda91db23c98cb57:0xafdc09145c6e6726!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!5m1!1e2?entry=ttu"
             target="_blank"
             rel="noreferrer"
-            className="group relative inline-flex items-center justify-center bg-navy text-white px-8 py-4 rounded-full font-bold text-[15px] transition-all duration-300 hover:bg-blue hover:scale-105 hover:shadow-[0_12px_30px_rgba(74,123,247,0.25)] overflow-hidden w-full sm:w-auto"
+            className="group relative inline-flex items-center justify-center bg-blue text-white px-8 py-4 rounded-full font-bold text-[15px] transition-all duration-300 hover:bg-navy hover:scale-105 hover:shadow-[0_12px_30px_rgba(53,102,234,0.25)] overflow-hidden w-full sm:w-auto"
           >
             <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-out_infinite]" />
             <span className="relative z-10 flex items-center">

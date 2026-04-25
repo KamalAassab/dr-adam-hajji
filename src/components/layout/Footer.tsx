@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUp, MapPin, Phone, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -8,8 +9,8 @@ const socialIcons = [
   {
     name: "TikTok",
     href: "https://www.tiktok.com/@adamhajji04",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
       </svg>
     )
@@ -17,8 +18,8 @@ const socialIcons = [
   {
     name: "Facebook",
     href: "https://www.facebook.com/p/Dr-ADM-HAJJI-61571341860651/",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-1.11 9-5.41 9-10.95z" />
       </svg>
     )
@@ -26,8 +27,8 @@ const socialIcons = [
   {
     name: "YouTube",
     href: "https://www.youtube.com/@Mondentiste",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
       </svg>
     )
@@ -35,8 +36,8 @@ const socialIcons = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/dr_adam_hajji",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
@@ -65,17 +66,19 @@ export default function Footer() {
       <div className="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-12">
         {/* Brand */}
         <div>
-          <Link href="/" className="inline-flex items-center gap-2.5 font-heading text-[22px] font-extrabold text-white mb-5">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 4C12.5 4 9 7 9 11c0 2.5 1 4.5 2 6.5 1 2 2 4 2 6.5 0 1.5.5 2 1.5 2s1.5-1 2-3c.5 2 1 3 2 3s1.5-.5 1.5-2c0-2.5 1-4.5 2-6.5 1-2 2-4 2-6.5 0-4-3.5-7-7-7z" fill="#4A7BF7" />
-              <path d="M13 10c0-1.6 1.3-3 3-3s3 1.4 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <span>Dr.ADAM HAJJI</span>
+          <Link href="/" className="inline-block mb-6 group">
+            <Image 
+              src="/dental-logo.png" 
+              alt="Dr. ADAM HAJJI" 
+              width={180} 
+              height={54} 
+              className="h-12 w-auto object-contain brightness-0 invert opacity-90 transition-all group-hover:opacity-100 group-hover:scale-[1.02]" 
+            />
           </Link>
-          <p className="text-[13px] leading-relaxed mb-7 max-w-sm">
+          <p className="text-[14px] leading-relaxed mb-8 max-w-sm text-white/60">
             At Dr.ADAM HAJJI Dental Clinic, we're dedicated to providing high-quality, personalized dental care. Our skilled team uses the latest technology to ensure comfortable, efficient treatments and beautiful, healthy smiles for life.
           </p>
-          <div className="flex gap-3">
+          <div className="flex gap-4">
             {socialIcons.map((icon, i) => (
               <a
                 key={i}
@@ -83,9 +86,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={icon.name}
-                className="w-[38px] h-[38px] rounded-lg bg-white/10 flex items-center justify-center text-[15px] transition-colors hover:bg-blue hover:text-white"
+                className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-all hover:bg-blue hover:border-blue hover:text-white hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(53,102,234,0.3)]"
               >
-                {icon.svg}
+                {icon.icon}
               </a>
             ))}
           </div>
@@ -166,11 +169,6 @@ export default function Footer() {
                 KAMAL AASSAB
               </a>
             </span>
-          </div>
-          <div className="flex gap-6">
-            <Link href="/about" className="text-[13px] text-white/50 transition-colors hover:text-white">
-              About Clinic
-            </Link>
           </div>
           <button
             onClick={scrollToTop}

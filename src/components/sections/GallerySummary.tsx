@@ -2,91 +2,97 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ImageIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const galleryImages = [
-  { src: "/dental_about1.png", style: "col-span-2 md:col-span-2 row-span-2 aspect-[4/3] md:aspect-auto" },
-  { src: "/dental_about2.png", style: "col-span-2 md:col-span-1 aspect-[4/3]" },
-  { src: "/dental_team_james.png", style: "col-span-1 aspect-square md:aspect-[4/5]" },
-  { src: "/dental_team_maya.png", style: "col-span-1 aspect-square md:aspect-[4/5]" },
-  { src: "/dental_team_michael.png", style: "col-span-2 md:col-span-1 aspect-[4/3] md:aspect-auto" },
+const images = [
+  { src: "/gallery/PIC1.jpg", alt: "Treatment Room", category: "Clinical", size: "large" },
+  { src: "/gallery/PIC2.jpg", alt: "Consultation Area", category: "Comfort", size: "medium" },
+  { src: "/gallery/PIC3.jpg", alt: "Digital Equipment", category: "Technology", size: "medium" },
+  { src: "/gallery/PIC4.jpg", alt: "Patient Care", category: "Service", size: "small" },
+  { src: "/gallery/PIC5.jpg", alt: "Clinic Interior", category: "Modern", size: "small" },
 ];
+
+function GalleryItem({ item, index }: { item: typeof images[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`relative rounded-[32px] overflow-hidden bg-slate-50 ${
+        item.size === "large" ? "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto" : 
+        item.size === "medium" ? "aspect-[4/5]" : "aspect-square"
+      }`}
+    >
+      <Image
+        src={item.src}
+        alt={item.alt}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
+    </motion.div>
+  );
+}
 
 export default function GallerySummary({ hideLink = false }: { hideLink?: boolean }) {
   return (
-    <section className="py-24 lg:py-32 bg-white relative">
+    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="max-w-2xl">
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue/5 border border-blue/10 mb-6"
+              className="flex items-center gap-3 mb-5"
             >
-              <span className="w-2 h-2 rounded-full bg-blue" />
-              <span className="text-[13px] font-bold text-blue tracking-[0.06em] uppercase">Clinic Tour</span>
+              <div className="h-px w-8 bg-blue shrink-0" />
+              <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">Visual Journey</span>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.7 }}
-              className="font-heading text-[clamp(32px,5vw,48px)] font-black text-navy leading-[1.1] tracking-tight"
+              transition={{ duration: 0.8 }}
+              className="font-heading text-[clamp(32px,5vw,56px)] font-black text-navy leading-[1.05] tracking-tight"
             >
-              Our State-of-the-Art <br className="hidden sm:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2B5DE4]">Facilities</span>
+              Excellence in <br />
+              <span className="text-blue text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">every detail.</span>
             </motion.h2>
           </div>
-          
+
           {!hideLink && (
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="shrink-0"
             >
               <Link
                 href="/gallery"
-                className="group relative inline-flex items-center justify-center bg-navy text-white px-8 py-4 rounded-full font-bold text-[15px] transition-all duration-300 hover:bg-blue hover:scale-105 hover:shadow-[0_12px_30px_rgba(74,123,247,0.25)] overflow-hidden"
+                className="group inline-flex items-center gap-3 bg-navy text-white px-8 py-4 rounded-full font-bold text-[15px] hover:bg-blue transition-all duration-300 shadow-xl shadow-navy/10"
               >
-                <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-out_infinite]" />
-                <span className="relative z-10 flex items-center">
-                  View Full Gallery
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
+                Explore Full Gallery
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
           )}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:h-[600px] mb-12">
-          {galleryImages.map((img, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: idx * 0.1, duration: 0.6, ease: "easeOut" }}
-              className={`relative overflow-hidden rounded-3xl group cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 ${img.style}`}
-            >
-              <Image
-                src={img.src}
-                alt={`Gallery image ${idx + 1}`}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 delay-100 border border-white/30 shadow-lg">
-                  <ImageIcon className="w-6 h-6" />
-                </div>
-              </div>
-            </motion.div>
+        {/* Professional Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+          {images.map((item, i) => (
+            <GalleryItem key={i} item={item} index={i} />
           ))}
         </div>
       </div>
+
+      {/* Background elements */}
+      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-blue/5 rounded-full blur-3xl pointer-events-none" />
     </section>
   );
 }
