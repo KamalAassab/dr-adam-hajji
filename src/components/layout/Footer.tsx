@@ -123,13 +123,13 @@ export default function Footer() {
         <div>
           <h6 className="font-heading text-[16px] font-bold text-white mb-5">Contact Us</h6>
           <div className="flex flex-col gap-4">
-            {/* Emergency SOS Badge — Premium Glassmorphic Redesign */}
-            <div className="flex items-center gap-4 bg-white/10 backdrop-blur-xl border border-white/20 p-4 rounded-2xl mb-4 group cursor-pointer transition-all hover:bg-white/20 hover:border-white/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)]">
-              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                <Phone className="w-6 h-6 text-red-500 animate-pulse" />
+            {/* Emergency SOS Badge — High-Visibility Red Design */}
+            <div className="flex items-center gap-4 bg-red-600 border border-red-500 p-4 rounded-2xl mb-4 group cursor-pointer transition-all hover:bg-red-500 hover:shadow-[0_8px_32px_rgba(220,38,38,0.4)] shadow-[0_4px_20px_rgba(220,38,38,0.2)]">
+              <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                <Phone className="w-6 h-6 text-white animate-pulse" />
               </div>
               <div className="flex flex-col">
-                <span className="text-white/80 text-[10px] uppercase tracking-[0.2em] font-black mb-0.5">Emergency SOS</span>
+                <span className="text-white/90 text-[10px] uppercase tracking-[0.2em] font-black mb-0.5">Emergency SOS</span>
                 <a href="tel:0710100605" className="text-white text-[19px] font-black tracking-tight leading-none">0710 100 605</a>
               </div>
             </div>
