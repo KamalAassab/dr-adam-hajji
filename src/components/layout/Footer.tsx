@@ -86,7 +86,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={icon.name}
-                className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-all hover:bg-blue hover:border-blue hover:text-white hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(53,102,234,0.3)]"
+                className="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center transition-all hover:bg-white hover:text-blue hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
               >
                 {icon.icon}
               </a>
@@ -98,11 +98,11 @@ export default function Footer() {
         <div>
           <h6 className="font-heading text-[16px] font-bold text-white mb-5">Quick Links</h6>
           <ul className="flex flex-col gap-3 text-[14px]">
-            <li><Link href="/" className="hover:text-blue transition-colors">Home</Link></li>
-            <li><Link href="/services" className="hover:text-blue transition-colors">Our Services</Link></li>
-            <li><Link href="/gallery" className="hover:text-blue transition-colors">Gallery</Link></li>
-            <li><Link href="/about" className="hover:text-blue transition-colors">About Us</Link></li>
-            <li><Link href="/contact" className="hover:text-blue transition-colors">Contact</Link></li>
+            <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">Our Services</Link></li>
+            <li><Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
+            <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+            <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
           </ul>
         </div>
 
@@ -110,12 +110,12 @@ export default function Footer() {
         <div>
           <h6 className="font-heading text-[16px] font-bold text-white mb-5">Our Services</h6>
           <ul className="flex flex-col gap-3 text-[14px]">
-            <li><Link href="/services" className="hover:text-blue transition-colors">General Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-blue transition-colors">Cosmetic Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-blue transition-colors">Pediatric Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-blue transition-colors">Restorative Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-blue transition-colors">Preventive Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-blue transition-colors">Orthodontics</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">General Dentistry</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">Cosmetic Dentistry</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">Pediatric Dentistry</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">Restorative Dentistry</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">Preventive Dentistry</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">Orthodontics</Link></li>
           </ul>
         </div>
 
@@ -135,21 +135,21 @@ export default function Footer() {
             </div>
 
             <div className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-blue shrink-0" />
+              <MapPin className="w-5 h-5 text-white/80 shrink-0" />
               <div className="flex flex-col">
                 <strong className="text-white text-[14px]">Clinic Location</strong>
                 <span className="text-[13px]">rond point LES CERISES, 12 lot zouhour salma 2, El Jadida 24000</span>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <Phone className="w-5 h-5 text-blue shrink-0" />
+              <Phone className="w-5 h-5 text-white/80 shrink-0" />
               <div className="flex flex-col">
                 <strong className="text-white text-[14px]">Call Us</strong>
                 <span className="text-[13px]">0523391908</span>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <Mail className="w-5 h-5 text-blue shrink-0" />
+              <Mail className="w-5 h-5 text-white/80 shrink-0" />
               <div className="flex flex-col">
                 <strong className="text-white text-[14px]">Send a Message</strong>
                 <span className="text-[13px]">adamdentalcenter@gmail.com</span>
@@ -172,7 +172,7 @@ export default function Footer() {
           </div>
           <button
             onClick={scrollToTop}
-            className={`w-10 h-10 rounded-full bg-blue text-white flex items-center justify-center text-[14px] transition-all hover:bg-blue-light hover:-translate-y-1 ${
+            className={`w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center text-[14px] transition-all hover:bg-white hover:text-navy hover:-translate-y-1 ${
               showScrollTop ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
             aria-label="Scroll to top"
