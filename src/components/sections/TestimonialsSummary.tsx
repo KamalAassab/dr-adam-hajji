@@ -69,26 +69,54 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
       <div className="absolute bottom-0 left-[-10%] w-96 h-96 bg-blue/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-6 max-w-2xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-8">
+          <div className="max-w-2xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.7 }}
+              className="font-heading text-[clamp(28px,4.5vw,42px)] font-black text-navy leading-[1.1] tracking-tight mb-4"
+            >
+              Loved By <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">Thousands</span>
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+              className="text-[15px] text-[#475569] leading-[1.6] font-medium"
+            >
+              Join thousands of happy patients who trust us for gentle, expert care and beautiful smiles.
+            </motion.p>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.7 }}
-            className="font-heading text-[clamp(28px,4.5vw,42px)] font-black text-navy leading-[1.1] tracking-tight mb-4"
+            transition={{ delay: 0.3, duration: 0.7 }}
+            className="flex items-center gap-4 self-start lg:self-end"
           >
-            Loved By <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">Thousands</span>
-          </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="text-[15px] text-[#475569] leading-[1.6] font-medium"
-          >
-            Join thousands of happy patients who trust us for gentle, expert care and beautiful smiles.
-          </motion.p>
+            <a
+              href="https://www.google.com/maps/place/Centre+dentaire+ADAM/@33.2365347,-8.523883,18z/data=!4m18!1m9!3m8!1s0xda91db23c98cb57:0xafdc09145c6e6726!2sCentre+dentaire+ADAM!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!3m7!1s0xda91db23c98cb57:0xafdc09145c6e6726!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!5m1!1e2?entry=ttu"
+              target="_blank"
+              rel="noreferrer"
+              className="group relative inline-flex items-center justify-center bg-blue text-white px-6 py-3.5 rounded-full font-bold text-[14px] transition-all duration-300 hover:bg-navy hover:scale-105 hover:shadow-[0_12px_30px_rgba(53,102,234,0.2)] overflow-hidden"
+            >
+              <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-out_infinite]" />
+              <span className="relative z-10 flex items-center">
+                <MessageSquareHeart className="w-4 h-4 mr-2" />
+                Leave a Review
+              </span>
+            </a>
+            
+            <div className="flex items-center gap-2">
+              <CarouselPrevious className="static translate-y-0 w-11 h-11 rounded-full bg-white text-navy border border-slate-200 shadow-sm hover:bg-blue hover:text-white hover:border-blue transition-all duration-300" />
+              <CarouselNext className="static translate-y-0 w-11 h-11 rounded-full bg-white text-navy border border-slate-200 shadow-sm hover:bg-blue hover:text-white hover:border-blue transition-all duration-300" />
+            </div>
+          </motion.div>
         </div>
 
         <motion.div
@@ -150,35 +178,11 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
               ))}
             </CarouselContent>
             
-            <div className="hidden md:flex items-center justify-center gap-3 mt-4">
-              <CarouselPrevious className="static translate-y-0 w-10 h-10 rounded-full bg-navy text-white border-none shadow-[0_4px_16px_rgba(13,27,75,0.15)] hover:bg-blue hover:shadow-[0_8px_24px_rgba(53,102,234,0.3)] hover:-translate-y-0.5 transition-all duration-300" />
-              <CarouselNext className="static translate-y-0 w-10 h-10 rounded-full bg-navy text-white border-none shadow-[0_4px_16px_rgba(13,27,75,0.15)] hover:bg-blue hover:shadow-[0_8px_24px_rgba(53,102,234,0.3)] hover:-translate-y-0.5 transition-all duration-300" />
-            </div>
+
           </Carousel>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 relative z-20"
-        >
 
-          
-          <a
-            href="https://www.google.com/maps/place/Centre+dentaire+ADAM/@33.2365347,-8.523883,18z/data=!4m18!1m9!3m8!1s0xda91db23c98cb57:0xafdc09145c6e6726!2sCentre+dentaire+ADAM!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!3m7!1s0xda91db23c98cb57:0xafdc09145c6e6726!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!5m1!1e2?entry=ttu"
-            target="_blank"
-            rel="noreferrer"
-            className="group relative inline-flex items-center justify-center bg-blue text-white px-8 py-4 rounded-full font-bold text-[15px] transition-all duration-300 hover:bg-navy hover:scale-105 hover:shadow-[0_12px_30px_rgba(53,102,234,0.25)] overflow-hidden w-full sm:w-auto"
-          >
-            <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-out_infinite]" />
-            <span className="relative z-10 flex items-center">
-              <MessageSquareHeart className="w-4 h-4 mr-2" />
-              Leave a Review
-            </span>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
