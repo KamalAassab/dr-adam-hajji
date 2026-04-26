@@ -132,18 +132,13 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
             </motion.div>
           </div>
 
-          <div className="relative">
-            {/* Side Shadow Width Effects */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-[#F8FAFF] to-transparent z-20 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-[#F8FAFF] to-transparent z-20 pointer-events-none" />
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative max-w-[1400px] mx-auto"
-            >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative max-w-[1400px] mx-auto"
+          >
             <CarouselContent className="-ml-4 md:-ml-6 py-8">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
@@ -181,8 +176,7 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
               ))}
             </CarouselContent>
           </motion.div>
-        </div>
-      </Carousel>
+        </Carousel>
     </div>
   </section>
 );
