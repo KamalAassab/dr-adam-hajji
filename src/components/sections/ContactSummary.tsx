@@ -8,23 +8,26 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function ContactSummary() {
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const { t, dir, lang } = useLanguage();
+  const [formData, setFormData] = useState({ name: "", phone: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [isSubjectOpen, setIsSubjectOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
     
     // Construct WhatsApp message
-    const text = `Hello, my name is ${formData.name}.\nEmail: ${formData.email}\nSubject: ${formData.subject}\nMessage: ${formData.message}`;
+    const text = `*New Inquiry from Website*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Subject:* ${formData.subject}\n*Message:* ${formData.message}`;
     const whatsappUrl = `https://wa.me/212710100605?text=${encodeURIComponent(text)}`;
     
     setTimeout(() => {
       setStatus("success");
       window.open(whatsappUrl, '_blank');
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", phone: "", subject: "", message: "" });
       setTimeout(() => setStatus("idle"), 3000);
     }, 500);
   };
@@ -39,129 +42,221 @@ export default function ContactSummary() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-blue/5 rounded-full blur-[80px] opacity-80 pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20 items-start mb-20">
+        {/* Unified Section Header */}
+        <div className="text-center mb-0">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            className="flex items-center gap-3 justify-center mb-4"
           >
+            <div className="h-[1px] w-10 bg-blue" />
+            <span className="text-[11px] font-black text-blue tracking-[0.3em] uppercase">{t.contact.formHeadline_1} {t.contact.formHeadline_2}</span>
+            <div className="h-[1px] w-10 bg-blue" />
+          </motion.div>
+          <h2 className="font-heading text-[clamp(36px,5vw,56px)] font-black text-navy leading-[1.1] tracking-tight">
+            {lang === "fr" ? "Nous sommes à votre " : "We are at your "}
+            <span className="text-blue">{lang === "fr" ? "Écoute" : "Service"}</span>
+          </h2>
+        </div>
 
-            <h2 className="font-heading text-[clamp(32px,5vw,48px)] font-black text-navy leading-[1.1] tracking-tight mb-6">
-              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">Touch</span>
-            </h2>
-            <p className="text-[16px] text-[#475569] leading-[1.8] font-medium mb-10 max-w-[420px]">
-              We're here to help you achieve the perfect smile. Contact our team to book an appointment or ask any questions you may have.
-            </p>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative group/main-card max-w-7xl mx-auto"
+        >
+          {/* Main Container Card */}
+          <div className="relative bg-white/60 backdrop-blur-3xl rounded-[48px] border border-white/40 shadow-[0_40_120px_-20px_rgba(13,27,75,0.12)] overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr]">
+              
+              {/* Info Panel */}
+              <div className="px-4 py-4 md:px-8 md:py-6 bg-gray-50/50 border-r border-slate-100 flex flex-col gap-6">
+                <div className="flex flex-col gap-4 w-full mx-auto lg:mx-0">
+                  {/* Location */}
+                  <div className="w-full flex items-start gap-4 p-5 rounded-3xl bg-white shadow-sm border border-slate-100 transition-all hover:shadow-md">
+                    <div className="w-10 h-10 rounded-2xl bg-blue/10 text-blue flex items-center justify-center shrink-0">
+                      <MapPin size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-[14px] font-black text-navy mb-1 uppercase tracking-wider">{t.contact.locationTitle}</h4>
+                      <p className="text-[13px] text-slate-500 font-medium leading-snug">{t.contact.location}</p>
+                    </div>
+                  </div>
 
-            <div className="flex flex-col gap-6 mb-12">
-              <div className="flex items-start gap-5 p-4 rounded-2xl hover:bg-slate-50 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <h6 className="font-heading text-[16px] font-bold text-navy mb-1.5">Our Location</h6>
-                  <p className="text-[15px] text-[#475569] leading-relaxed">rond point LES CERISES, 12 lot zouhour salma 2, El Jadida 24000</p>
+                  {/* Call */}
+                  <a href="tel:0523391908" className="w-full flex items-start gap-4 p-5 rounded-3xl bg-white shadow-sm border border-slate-100 hover:border-blue/30 transition-all hover:shadow-md">
+                    <div className="w-10 h-10 rounded-2xl bg-blue/10 text-blue flex items-center justify-center shrink-0">
+                      <Phone size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-[14px] font-black text-navy mb-1 uppercase tracking-wider">{t.contact.callTitle}</h4>
+                      <p className="text-[13px] text-slate-500 font-sans font-medium">0523 39 19 08</p>
+                    </div>
+                  </a>
+
+                  {/* Hours */}
+                  <div className="w-full flex items-start gap-4 p-5 rounded-3xl bg-white shadow-sm border border-slate-100 transition-all hover:shadow-md">
+                    <div className="w-10 h-10 rounded-2xl bg-blue/10 text-blue flex items-center justify-center shrink-0">
+                      <Clock size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-[14px] font-black text-navy mb-1 uppercase tracking-wider">{t.contact.hoursTitle}</h4>
+                      <p className="text-[13px] text-slate-500 font-medium leading-snug">{t.contact.hours}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <a href="tel:0523391908" className="flex items-start gap-5 p-4 rounded-2xl hover:bg-slate-50 transition-colors block">
-                <div className="w-12 h-12 rounded-full bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <h6 className="font-heading text-[16px] font-bold text-navy mb-1.5">Call Us</h6>
-                  <p className="text-[15px] text-[#475569]">0523391908</p>
-                </div>
-              </a>
-              <div className="flex items-start gap-5 p-4 rounded-2xl hover:bg-slate-50 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-blue/10 flex items-center justify-center text-blue shrink-0">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <div>
-                  <h6 className="font-heading text-[16px] font-bold text-navy mb-1.5">Opening Hours</h6>
-                  <p className="text-[15px] text-[#475569]">24/7 (Friday: Closed)</p>
+
+              {/* Form Panel */}
+              <div className="p-4 md:p-8 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-[0.03] pointer-events-none" />
+                
+                <div className="relative z-10 flex flex-col gap-4">
+                  <form onSubmit={handleSubmit} className={`flex flex-col gap-6 ${dir === "rtl" ? "text-right" : "text-left"}`}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Name Input */}
+                    <div className="flex flex-col gap-2.5 group">
+                      <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] px-1 group-focus-within:text-blue transition-colors">
+                        {t.contact.nameLabel}
+                      </label>
+                      <div className="relative">
+                        <input
+                          required
+                          type="text"
+                          placeholder={t.contact.namePlaceholder}
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className={`w-full bg-white border border-slate-100 rounded-xl px-5 py-3.5 text-[15px] font-bold text-navy shadow-sm focus:outline-none focus:border-blue focus:ring-4 focus:ring-blue/5 transition-all ${dir === "rtl" ? "text-right" : "text-left"}`}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Phone Input */}
+                    <div className="flex flex-col gap-2.5 group">
+                      <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] px-1 group-focus-within:text-blue transition-colors">
+                        {t.contact.phoneLabel}
+                      </label>
+                      <div className="relative">
+                        <input
+                          required
+                          type="tel"
+                          placeholder={t.contact.phonePlaceholder}
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className={`w-full bg-white border border-slate-100 rounded-xl px-5 py-3.5 text-[15px] font-bold text-navy shadow-sm focus:outline-none focus:border-blue focus:ring-4 focus:ring-blue/5 transition-all ${dir === "rtl" ? "text-right" : "text-left"}`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Subject Dropdown — Professional Design */}
+                  <div className="relative flex flex-col gap-2.5 z-30">
+                    <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] px-1 transition-all group-focus-within:text-blue">
+                      {t.contact.subjectLabel}
+                    </label>
+                    
+                    <div className="relative group/select">
+                      <button
+                        type="button"
+                        onClick={() => setIsSubjectOpen(!isSubjectOpen)}
+                        className={`w-full flex items-center justify-between bg-white/40 border border-slate-100 rounded-2xl px-6 py-4 text-[15px] font-bold text-navy transition-all duration-300 hover:border-blue/30 focus:border-blue focus:bg-white shadow-sm ${isSubjectOpen ? "ring-2 ring-blue/10 border-blue" : ""}`}
+                      >
+                        <span className={formData.subject ? "text-navy" : "text-slate-400"}>
+                          {formData.subject || (lang === "fr" ? "Sélectionnez un sujet" : "Select a subject")}
+                        </span>
+                        <div className={`transition-transform duration-300 ${isSubjectOpen ? "rotate-180" : ""}`}>
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="text-navy/40">
+                            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                      </button>
+
+                      {/* Dropdown Menu */}
+                      <div className={`absolute top-full left-0 w-full mt-2 bg-white rounded-2xl border border-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.1)] overflow-hidden transition-all duration-300 z-50 ${isSubjectOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}>
+                        <div className="p-2 flex flex-col gap-1">
+                          {t.contact.subjectOptions.map((option) => (
+                            <button
+                              key={option}
+                              type="button"
+                              onClick={() => {
+                                setFormData({ ...formData, subject: option });
+                                setIsSubjectOpen(false);
+                              }}
+                              className={`w-full text-left px-4 py-3 rounded-xl text-[14px] font-bold transition-all ${
+                                formData.subject === option 
+                                ? "bg-blue text-white" 
+                                : "text-navy/60 hover:bg-slate-50 hover:text-navy"
+                              } ${dir === "rtl" ? "text-right" : "text-left"}`}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Backdrop to close dropdown */}
+                    {isSubjectOpen && (
+                      <div 
+                        className="fixed inset-0 z-[-1]" 
+                        onClick={() => setIsSubjectOpen(false)}
+                      />
+                    )}
+                  </div>
+
+                  {/* Message Area */}
+                  <div className="relative group flex flex-col gap-2.5">
+                    <label className="text-[10px] font-black text-navy/40 uppercase tracking-[0.2em] px-1 transition-all group-focus-within:text-blue">
+                      {t.contact.messageLabel}
+                    </label>
+                    <textarea
+                      required
+                      placeholder={t.contact.messagePlaceholder}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      rows={4}
+                      className={`w-full bg-white/30 rounded-[24px] p-6 text-[16px] font-bold text-navy border border-slate-100 placeholder:text-slate-300 focus:outline-none focus:border-blue focus:bg-white transition-all duration-500 resize-none ${dir === "rtl" ? "text-right" : "text-left"}`}
+                    />
+                    <div className="absolute bottom-4 right-6 text-[11px] font-black text-slate-300 uppercase tracking-widest">
+                      {formData.message.length} / 500
+                    </div>
+                  </div>
+
+                  {/* Submit Button — Simple & Professional */}
+                  <button
+                    type="submit"
+                    disabled={status === "submitting" || status === "success"}
+                    className={`group relative h-14 w-full rounded-xl font-black text-[15px] uppercase tracking-[0.2em] transition-all duration-300 overflow-hidden ${
+                      status === "success" ? "bg-green-500 text-white" : "bg-blue text-white hover:bg-navy shadow-lg shadow-blue/20"
+                    }`}
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                      {status === "idle" ? (
+                        <>
+                          {t.contact.submit}
+                          <Send size={16} className={`transition-transform duration-300 group-hover:translate-x-1 ${dir === "rtl" ? "rotate-180" : ""}`} />
+                        </>
+                      ) : status === "submitting" ? (
+                        <div className="flex items-center gap-3">
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          {t.contact.submitting}
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <HeartPulse className="w-5 h-5 animate-pulse" />
+                          {t.contact.success}
+                        </div>
+                      )}
+                    </span>
+                  </button>
+                  </form>
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-[#F8FAFF] rounded-[32px] p-8 md:p-12 shadow-[0_20px_60px_rgba(13,27,75,0.05)] border border-blue/10 relative"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 rounded-tr-[32px]" />
-            <h3 className="font-heading text-[28px] font-black text-navy mb-8 tracking-tight relative z-10">Send us a Message</h3>
-            
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2.5">
-                  <label className="text-[14px] font-bold text-navy/80 pl-1">Your Name</label>
-                  <Input
-                    required
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="h-14 bg-white border-white rounded-xl shadow-sm focus-visible:ring-2 focus-visible:ring-blue/50 text-[15px]"
-                  />
-                </div>
-                <div className="flex flex-col gap-2.5">
-                  <label className="text-[14px] font-bold text-navy/80 pl-1">Email Address</label>
-                  <Input
-                    required
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="h-14 bg-white border-white rounded-xl shadow-sm focus-visible:ring-2 focus-visible:ring-blue/50 text-[15px]"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col gap-2.5">
-                <label className="text-[14px] font-bold text-navy/80 pl-1">Subject</label>
-                <Input
-                  required
-                  placeholder="How can we help?"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="h-14 bg-white border-white rounded-xl shadow-sm focus-visible:ring-2 focus-visible:ring-blue/50 text-[15px]"
-                />
-              </div>
-              <div className="flex flex-col gap-2.5">
-                <label className="text-[14px] font-bold text-navy/80 pl-1">Message</label>
-                <Textarea
-                  required
-                  placeholder="Tell us about your dental needs..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="min-h-[150px] bg-white border-white rounded-xl shadow-sm focus-visible:ring-2 focus-visible:ring-blue/50 resize-none text-[15px] p-4"
-                />
-              </div>
-              <Button
-                type="submit"
-                disabled={status === "submitting" || status === "success"}
-                className={`group h-14 text-[16px] font-bold rounded-xl mt-4 transition-all duration-300 relative overflow-hidden ${
-                  status === "success" ? "bg-green-500 hover:bg-green-600 shadow-lg shadow-green-500/20" : "bg-blue hover:bg-navy shadow-lg shadow-blue/20 hover:-translate-y-1"
-                }`}
-              >
-                {status === "idle" && <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-out_infinite]" />}
-                <span className="relative z-10 flex items-center justify-center">
-                  {status === "submitting" ? (
-                    "Redirecting..."
-                  ) : status === "success" ? (
-                    "Opened WhatsApp!"
-                  ) : (
-                    <>
-                      Send Message <Send className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </>
-                  )}
-                </span>
-              </Button>
-            </form>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
         {/* Google Map */}
         <motion.div
@@ -186,15 +281,15 @@ export default function ContactSummary() {
           ></iframe>
 
           {/* Floating Get Directions Button */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[90%] md:w-auto">
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20">
             <a
               href="https://maps.app.goo.gl/sJ7U6NhBz3K7bLYCA"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-center gap-2 bg-white text-navy px-8 py-4 rounded-full font-bold text-[16px] transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.15)] hover:scale-105 hover:bg-blue hover:text-white border border-slate-100 whitespace-nowrap"
+              className={`flex items-center justify-center gap-2 bg-blue text-white px-5 py-2.5 md:px-8 md:py-4 rounded-full font-bold text-[13px] md:text-[16px] shadow-[0_10px_30px_rgba(53,102,234,0.3)] border border-white/20 whitespace-nowrap ${dir === "rtl" ? "flex-row-reverse" : ""}`}
             >
-              <Navigation className="w-5 h-5" />
-              Get Directions
+              <Navigation className="w-3.5 h-3.5 md:w-5 md:h-5" />
+              {t.contact.directions}
             </a>
           </div>
         </motion.div>
@@ -210,34 +305,40 @@ export default function ContactSummary() {
           <div className="absolute top-[-50%] right-[-10%] w-[400px] h-[400px] bg-red-500/30 blur-[80px] rounded-full pointer-events-none" />
           <div className="absolute bottom-[-50%] left-[-10%] w-[300px] h-[300px] bg-black/10 blur-[80px] rounded-full pointer-events-none" />
           
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-center">
+          <div className={`relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-center ${dir === "rtl" ? "text-right" : "text-left"}`}>
             <div>
               <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white font-bold text-[13px] tracking-widest uppercase mb-6 backdrop-blur-sm shadow-sm">
                 <HeartPulse className="w-4 h-4 animate-pulse" />
-                24/7 Dental Emergency
+                {t.contact.emergency.tag}
               </div>
-              <h3 className="font-heading text-[32px] md:text-[42px] font-black text-white leading-tight mb-4 tracking-tight">
-                Severe Toothache or Injury?
+              <h3 className="font-heading text-[clamp(18px,5vw,42px)] font-black text-white leading-tight mb-4 tracking-tight whitespace-nowrap" dir={dir}>
+                {t.contact.emergency.headline}
               </h3>
               <p className="text-red-50 text-[16px] md:text-[18px] leading-relaxed mb-6 max-w-2xl">
-                Do not wait. Dental emergencies require immediate attention to save your tooth and prevent infection. We provide rapid response care for trauma, severe pain, abscesses, and broken teeth.
+                {t.contact.emergency.desc}
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-black/10 rounded-2xl p-4 border border-white/10">
-                  <h4 className="text-white font-bold mb-2 flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-white" /> Knocked Out Tooth</h4>
-                  <p className="text-red-100 text-[13px] leading-relaxed">Keep it moist. Try to place it back in the socket or store in milk until you reach our clinic.</p>
+                  <h4 className="text-white font-bold mb-2 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white" /> 
+                    {t.contact.emergency.box1Title}
+                  </h4>
+                  <p className="text-red-100 text-[13px] leading-relaxed">{t.contact.emergency.box1Desc}</p>
                 </div>
                 <div className="bg-black/10 rounded-2xl p-4 border border-white/10">
-                  <h4 className="text-white font-bold mb-2 flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-white" /> Severe Swelling</h4>
-                  <p className="text-red-100 text-[13px] leading-relaxed">Apply a cold compress to the outside of your cheek and contact us immediately.</p>
+                  <h4 className="text-white font-bold mb-2 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white" /> 
+                    {t.contact.emergency.box2Title}
+                  </h4>
+                  <p className="text-red-100 text-[13px] leading-relaxed">{t.contact.emergency.box2Desc}</p>
                 </div>
               </div>
             </div>
             
-            <div className="flex flex-col items-center justify-center md:pl-10 md:border-l border-white/20">
-              <span className="text-red-100 text-[14px] font-bold uppercase tracking-widest mb-3">Call Our SOS Line</span>
-              <a href="tel:0710100605" className="group relative overflow-hidden bg-white text-red-600 px-8 py-5 rounded-full font-black text-[28px] tracking-tight transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_35px_rgba(0,0,0,0.2)] flex items-center gap-3">
+            <div className={`flex flex-col items-center justify-center md:px-10 ${dir === "rtl" ? "md:border-r" : "md:border-l"} border-white/20`}>
+              <span className="text-red-100 text-[14px] font-bold uppercase tracking-widest mb-3">{t.contact.emergency.callSOS}</span>
+              <a href="tel:0710100605" className={`group relative overflow-hidden bg-white text-red-600 px-8 py-5 rounded-full font-black text-[28px] tracking-tight transition-all duration-300 hover:scale-105 hover:shadow-[0_15px_35px_rgba(0,0,0,0.2)] flex items-center gap-3 ${dir === "rtl" ? "flex-row-reverse" : ""}`} dir="ltr">
                 <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-red-500/10 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-out_infinite]" />
                 <Phone className="w-7 h-7" />
                 0710100605

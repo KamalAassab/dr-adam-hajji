@@ -4,30 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play } from "lucide-react";
-
-const faqs = [
-  {
-    question: "How often should I visit the dentist?",
-    answer: "We recommend visiting the dentist every six months for a routine checkup and cleaning. Regular visits help detect potential issues early and keep your oral health in top condition.",
-  },
-  {
-    question: "What should I do in a dental emergency?",
-    answer: "In a dental emergency, contact our office immediately. We offer emergency appointments to address urgent issues like severe pain, broken teeth, or knocked-out teeth as quickly as possible.",
-  },
-  {
-    question: "Do you offer services for kids?",
-    answer: "Yes! We offer specialized pediatric dentistry services in a friendly, comfortable environment designed to make children feel at ease during their dental visits.",
-  },
-  {
-    question: "What are my options for replacing missing teeth?",
-    answer: "We offer several options including dental implants, bridges, and dentures. During your consultation, we'll discuss which option best suits your needs, budget, and oral health goals.",
-  },
-  {
-    question: "Is teeth whitening safe?",
-    answer: "Yes, professional teeth whitening is safe when performed or supervised by a dental professional. We use clinically approved whitening agents that effectively brighten your smile without harming your enamel.",
-  },
-];
-
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const youtubeShorts = [
   "7auqgpTxnII",
@@ -39,6 +16,7 @@ const youtubeShorts = [
 
 function VideoCard({ videoId, index }: { videoId: string; index: number }) {
   const [active, setActive] = useState(false);
+  const { t } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -69,8 +47,8 @@ function VideoCard({ videoId, index }: { videoId: string; index: number }) {
  
           {/* Label */}
           <div className="absolute bottom-6 left-6 right-6">
-            <p className="text-[10px] font-black text-blue tracking-[0.2em] uppercase mb-1">Educational</p>
-            <p className="text-white font-bold text-sm leading-tight opacity-0 group-hover:opacity-100 transition-opacity duration-300">Watch Procedure</p>
+            <p className="text-[10px] font-black text-blue tracking-[0.2em] uppercase mb-1">{t.faq.videoEducational}</p>
+            <p className="text-white font-bold text-sm leading-tight opacity-0 group-hover:opacity-100 transition-opacity duration-300">{t.faq.videoWatch}</p>
           </div>
         </div>
       ) : (
@@ -88,6 +66,7 @@ function VideoCard({ videoId, index }: { videoId: string; index: number }) {
 
 export default function FAQSummary() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { t, dir } = useLanguage();
 
   return (
     <section className="pt-24 lg:pt-32 pb-8 bg-white relative overflow-hidden">
@@ -99,13 +78,13 @@ export default function FAQSummary() {
           {/* Left — Sticky editorial header */}
           <div className="lg:sticky lg:top-28">
             <motion.div
-              initial={{ opacity: 0, x: -16 }}
+              initial={{ opacity: 0, x: dir === "rtl" ? 16 : -16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 mb-6"
+              className={`flex items-center gap-3 mb-6 justify-center ${dir === "rtl" ? "lg:justify-end" : "lg:justify-start"}`}
             >
               <div className="h-px w-8 bg-blue shrink-0" />
-              <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">FAQ</span>
+              <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">{t.faq.eyebrow}</span>
             </motion.div>
 
             <motion.h2
@@ -113,10 +92,11 @@ export default function FAQSummary() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="font-heading text-[clamp(32px,4.5vw,52px)] font-black text-navy leading-[1.08] tracking-tight mb-6"
+              className={`font-heading text-[clamp(32px,4.5vw,52px)] font-black text-navy leading-[1.08] tracking-tight mb-6 text-center ${dir === "rtl" ? "lg:text-right" : "lg:text-left"}`}
+              dir={dir}
             >
-              Your questions,<br />
-              <span className="text-blue">answered.</span>
+              {t.faq.headline_1} <br className="hidden md:block" />
+              <span className="text-blue" dir={dir}>{t.faq.headline_2}</span>
             </motion.h2>
 
             <motion.p
@@ -124,9 +104,9 @@ export default function FAQSummary() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.7 }}
-              className="text-[15px] lg:text-[16px] text-slate-500 leading-[1.75] max-w-xs"
+              className={`text-[15px] lg:text-[16px] text-slate-500 leading-[1.75] max-w-xs mx-auto lg:mx-0 text-center ${dir === "rtl" ? "lg:text-right lg:ml-auto" : "lg:text-left"}`}
             >
-              Honest, clear answers to the questions our patients ask before their first visit.
+              {t.faq.description}
             </motion.p>
           </div>
 
@@ -138,13 +118,13 @@ export default function FAQSummary() {
             transition={{ duration: 0.7 }}
             className="divide-y divide-slate-100"
           >
-            {faqs.map((faq, idx) => {
+            {t.faq.items.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
                 <div key={idx} className={`transition-colors duration-300 ${isOpen ? "bg-blue-pale" : "hover:bg-[#F8FAFF]"} -mx-4 px-4 rounded-2xl`}>
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : idx)}
-                    className="w-full flex items-center gap-5 py-5 text-left focus:outline-none group"
+                    className={`w-full flex items-center gap-5 py-5 focus:outline-none group ${dir === "rtl" ? "text-right" : "text-left"}`}
                   >
                     {/* Index number */}
                     <span className={`shrink-0 font-heading text-[13px] font-black w-8 transition-colors duration-300 ${isOpen ? "text-blue" : "text-slate-300 group-hover:text-slate-400"}`}>
@@ -174,8 +154,8 @@ export default function FAQSummary() {
                         transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="text-[14px] lg:text-[15px] text-slate-500 leading-[1.8] pb-5 pl-13 pr-12"
-                           style={{ paddingLeft: "3.25rem" }}>
+                        <p className={`text-[14px] lg:text-[15px] text-slate-500 leading-[1.8] pb-5 ${dir === "rtl" ? "pr-13 pl-12" : "pl-13 pr-12"}`}
+                           style={dir === "rtl" ? { paddingRight: "3.25rem" } : { paddingLeft: "3.25rem" }}>
                           {faq.answer}
                         </p>
                       </motion.div>
@@ -191,29 +171,31 @@ export default function FAQSummary() {
         <div className="mt-24 lg:mt-32 pt-16 border-t border-slate-100">
 
           {/* Header row */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+            <div className={`text-center ${dir === "rtl" ? "lg:text-right" : "lg:text-left"}`}>
+              <div className={`flex items-center gap-3 mb-4 justify-center ${dir === "rtl" ? "lg:justify-end" : "lg:justify-start"}`}>
                 <div className="h-px w-8 bg-blue shrink-0" />
-                <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">Educational Content</span>
+                <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">{t.faq.videoEyebrow}</span>
               </div>
-              <h3 className="font-heading text-[clamp(26px,3.5vw,42px)] font-black text-navy leading-[1.08]">
-                Knowledge is the first step to <br />
-                <span className="text-blue">a healthier smile.</span>
+              <h3 className="font-heading text-[clamp(26px,3.5vw,42px)] font-black text-navy leading-[1.08]" dir={dir}>
+                {t.faq.videoHeadline_1} <br className="hidden md:block" />
+                <span className="text-blue" dir={dir}>{t.faq.videoHeadline_2}</span>
               </h3>
             </div>
 
-            <a
-              href="https://www.youtube.com/@Mondentiste"
-              target="_blank"
-              rel="noreferrer"
-              className="group shrink-0 inline-flex items-center gap-2.5 bg-[#FF0000] text-white px-8 py-4 rounded-full font-bold text-[14px] hover:bg-[#cc0000] transition-all duration-300 shadow-xl shadow-red-600/20"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-              Explore Channel
-            </a>
+            <div className="flex justify-center lg:justify-start">
+              <a
+                href="https://www.youtube.com/@Mondentiste"
+                target="_blank"
+                rel="noreferrer"
+                className="group shrink-0 inline-flex items-center justify-center gap-2.5 bg-[#FF0000] text-white px-6 py-3.5 rounded-full font-bold text-[13px] lg:text-[14px] hover:bg-[#cc0000] transition-all duration-300 shadow-xl shadow-red-600/20 min-w-[180px] lg:min-w-0"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                {t.faq.videoExplore}
+              </a>
+            </div>
           </div>
 
           <div

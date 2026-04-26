@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Alata, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Alata } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,12 +9,6 @@ const alata = Alata({
   weight: "400",
   variable: "--font-alata",
   subsets: ["latin"],
-});
-
-const ibmPlexArabic = IBM_Plex_Sans_Arabic({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  variable: "--font-ibm-plex-arabic",
-  subsets: ["arabic"],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${alata.variable} ${ibmPlexArabic.variable} h-full antialiased`}
+      className={`${alata.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans">

@@ -100,8 +100,12 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
                   transition={{ delay: 0.2 + i * 0.07 }}
                   className="text-center lg:text-start"
                 >
-                  <p className={`font-heading text-[26px] font-black text-navy leading-none mb-1 ${dir === "rtl" ? "font-sans" : ""}`}>{s.value}</p>
-                  <p className="text-[12px] text-slate-500 font-medium leading-snug">{s.label}</p>
+                  <div className={`font-heading text-[28px] sm:text-[32px] xl:text-[36px] font-black text-navy leading-none mb-1 text-center sm:text-left ${dir === "rtl" ? "sm:text-right" : ""}`} dir="ltr">
+                    {s.value}
+                  </div>
+                  <div className={`text-[11px] sm:text-[12px] font-bold text-slate-400 uppercase tracking-wider text-center sm:text-left ${dir === "rtl" ? "sm:text-right" : ""}`}>
+                    {s.label}
+                  </div>
                 </motion.div>
               ))}
             </div>
