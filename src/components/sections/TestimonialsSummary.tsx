@@ -181,11 +181,9 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
               ))}
             </CarouselContent>
           </motion.div>
-        </Carousel>
-      </div>
-
-
-      </div>
-    </section>
-  );
+        </div>
+      </Carousel>
+    </div>
+  </section>
+);
 }
