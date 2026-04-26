@@ -218,7 +218,7 @@ export default function FAQSummary() {
 
           {/* Video strip */}
           <div
-            className="flex gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-8 no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0"
+            className="flex gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-8 no-scrollbar -mx-6 px-6 lg:-mx-24 lg:px-24 xl:-mx-32 xl:px-32"
             style={{ scrollbarWidth: "none" }}
           >
             {youtubeShorts.map((id, i) => (
