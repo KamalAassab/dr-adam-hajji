@@ -18,13 +18,30 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-20 items-center">
 
-          {/* ── Left: Image block — appears SECOND on mobile ── */}
+          {/* ── Mobile-Only Title (Appears before picture) ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="lg:hidden text-center mb-[-1rem]"
+          >
+            <p className="text-[12px] font-bold text-blue tracking-[0.14em] uppercase mb-4">
+              About the Clinic
+            </p>
+            <h2 className="font-heading text-[clamp(30px,7.5vw,50px)] font-black text-navy leading-[1.08] tracking-tight">
+              Dental care that puts<br />
+              <span className="text-blue">people first.</span>
+            </h2>
+          </motion.div>
+
+          {/* ── Left: Image block ── */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative order-2 lg:order-1"
+            className="relative"
           >
             {/* Main photo — single, clean */}
             <div className="relative rounded-[40px] overflow-hidden aspect-[4/5] w-full max-w-[480px] mx-auto lg:mx-0 shadow-[0_32px_64px_-16px_rgba(13,27,75,0.15)]">
@@ -41,24 +58,24 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
             </div>
           </motion.div>
 
-          {/* ── Right: Content — appears FIRST on mobile ── */}
+          {/* ── Right: Content (Description, Stats, CTAs) ── */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="pt-0 lg:pt-0 order-1 lg:order-2"
+            className="pt-2 lg:pt-0"
           >
-            {/* Eyebrow */}
-            <p className="text-[12px] font-bold text-blue tracking-[0.14em] uppercase mb-5 text-center lg:text-left">
-              About the Clinic
-            </p>
-
-            {/* Headline */}
-            <h2 className="font-heading text-[clamp(30px,4.5vw,50px)] font-black text-navy leading-[1.08] tracking-tight mb-6 text-center lg:text-left">
-              Dental care that puts<br />
-              <span className="text-blue">people first.</span>
-            </h2>
+            {/* ── Desktop-Only Title ── */}
+            <div className="hidden lg:block">
+              <p className="text-[12px] font-bold text-blue tracking-[0.14em] uppercase mb-5 text-left">
+                About the Clinic
+              </p>
+              <h2 className="font-heading text-[clamp(30px,4.5vw,50px)] font-black text-navy leading-[1.08] tracking-tight mb-6 text-left">
+                Dental care that puts<br />
+                <span className="text-blue">people first.</span>
+              </h2>
+            </div>
 
             {/* Body - two short, honest paragraphs */}
             <p className="text-slate-600 text-[16px] leading-[1.75] mb-5 max-w-[520px] text-center lg:text-left mx-auto lg:mx-0">
