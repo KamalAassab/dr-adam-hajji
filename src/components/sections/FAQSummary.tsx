@@ -90,7 +90,7 @@ export default function FAQSummary() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section className="pt-24 lg:pt-32 pb-8 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6">
 
         {/* ━━━━━━━ FAQ ━━━━━━━ */}

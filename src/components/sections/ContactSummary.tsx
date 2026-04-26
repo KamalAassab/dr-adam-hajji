@@ -30,7 +30,7 @@ export default function ContactSummary() {
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section className="pt-8 pb-24 lg:pb-32 bg-white relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute inset-0 z-0">
         <Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop" alt="Contact Background" fill className="object-cover opacity-[0.03] pointer-events-none" />
