@@ -45,7 +45,7 @@ function VideoCard({ videoId, index }: { videoId: string; index: number }) {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-20px" }}
       transition={{ delay: index * 0.05, duration: 0.5 }}
-      className="snap-center shrink-0 w-[260px] sm:w-[280px] rounded-[32px] overflow-hidden bg-navy shadow-2xl border border-white/5 group transition-all duration-500 hover:-translate-y-2"
+      className="snap-center shrink-0 w-[260px] sm:w-[280px] rounded-[32px] overflow-hidden bg-transparent shadow-2xl group transition-all duration-500 hover:-translate-y-2"
       style={{ aspectRatio: "9/16" }}
     >
       {!active ? (
@@ -58,7 +58,7 @@ function VideoCard({ videoId, index }: { videoId: string; index: number }) {
             sizes="280px"
           />
           {/* Premium Scrim */}
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
           
           {/* Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
@@ -66,7 +66,7 @@ function VideoCard({ videoId, index }: { videoId: string; index: number }) {
               <Play className="w-6 h-6 ml-1 fill-current" />
             </div>
           </div>
-
+ 
           {/* Label */}
           <div className="absolute bottom-6 left-6 right-6">
             <p className="text-[10px] font-black text-blue tracking-[0.2em] uppercase mb-1">Educational</p>
@@ -79,7 +79,7 @@ function VideoCard({ videoId, index }: { videoId: string; index: number }) {
           title="Dental short"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          className="w-full h-full border-0"
+          className="w-full h-full border-0 bg-white"
         />
       )}
     </motion.div>
