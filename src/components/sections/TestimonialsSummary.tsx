@@ -98,9 +98,7 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative max-w-[1400px] mx-auto"
         >
-          {/* Gradient Edges for Carousel Fading effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-[#F8FAFF] to-transparent z-10 pointer-events-none" />
+
 
           <Carousel
             opts={{
