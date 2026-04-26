@@ -46,10 +46,7 @@ export default function ContactSummary() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue/5 border border-blue/10 mb-6">
-              <span className="w-2 h-2 rounded-full bg-blue" />
-              <span className="text-[13px] font-bold text-blue tracking-[0.06em] uppercase">Contact Us</span>
-            </div>
+
             <h2 className="font-heading text-[clamp(32px,5vw,48px)] font-black text-navy leading-[1.1] tracking-tight mb-6">
               Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">Touch</span>
             </h2>
