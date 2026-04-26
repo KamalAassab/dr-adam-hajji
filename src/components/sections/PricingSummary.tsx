@@ -136,8 +136,85 @@ export default function PricingSummary() {
           </motion.p>
         </div>
 
-        {/* Tab Selection Strip */}
-        <div className="flex gap-2 overflow-x-auto pb-4 mb-8 snap-x no-scrollbar" style={{ scrollbarWidth: "none" }}>
+        {/* ── MOBILE: Compact tab + accordion layout ── */}
+        <div className="block xl:hidden">
+          {/* Category pill selector */}
+          <div className="flex gap-2 overflow-x-auto pb-3 mb-5 snap-x no-scrollbar" style={{ scrollbarWidth: "none" }}>
+            {categories.map((c, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`snap-start shrink-0 px-4 py-2 rounded-xl font-bold text-[13px] transition-all duration-200 relative overflow-hidden ${
+                  active === i
+                    ? "bg-navy text-white shadow-lg"
+                    : "bg-slate-100 text-slate-500"
+                }`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Active category header card */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`mobile-header-${active}`}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25 }}
+              className="bg-navy rounded-[28px] p-5 mb-4 text-white relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue/20 blur-[40px] rounded-full pointer-events-none" />
+              <div className="relative z-10">
+                <p className="text-[10px] font-black text-white/40 tracking-[0.2em] uppercase mb-1">From</p>
+                <p className="font-heading text-[28px] font-black text-blue leading-none mb-2">{cat.from}</p>
+                <h3 className="font-heading text-[18px] font-black leading-tight mb-1">{cat.title}</h3>
+                <p className="text-white/60 text-[13px] leading-relaxed">{cat.blurb}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Item list */}
+          <div className="space-y-3">
+            <AnimatePresence mode="popLayout">
+              {cat.items.map((item, i) => (
+                <motion.div
+                  key={`${active}-${i}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: i * 0.04, duration: 0.3 }}
+                  className="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <CheckCircle2 size={14} className="text-blue/40 shrink-0" />
+                        <h4 className="font-heading text-[15px] font-black text-navy leading-tight">{item.name}</h4>
+                      </div>
+                      <p className="text-slate-400 text-[12px] leading-relaxed ml-5">{item.desc}</p>
+                    </div>
+                    <span className="font-heading text-[16px] font-black text-blue tracking-tight shrink-0">{item.price}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile CTA */}
+          <Link
+            href="/contact"
+            className="mt-5 flex items-center justify-center gap-2 bg-blue text-white py-4 rounded-2xl font-bold text-[14px] shadow-lg shadow-blue/20 w-full"
+          >
+            Get a Quote <ArrowRight size={16} />
+          </Link>
+        </div>
+
+        {/* ── DESKTOP: Original tab layout ── */}
+        <div className="hidden xl:block">
+          {/* Tab Selection Strip */}
+          <div className="flex gap-2 overflow-x-auto pb-4 mb-8 snap-x no-scrollbar" style={{ scrollbarWidth: "none" }}>
           {categories.map((c, i) => (
             <button
               key={i}
@@ -257,7 +334,7 @@ export default function PricingSummary() {
             </motion.div>
           </div>
 
-        </div>
+        </div>{/* end desktop xl:block */}
       </div>
     </section>
   );

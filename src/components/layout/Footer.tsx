@@ -63,22 +63,26 @@ export default function Footer() {
 
   return (
     <footer className="bg-footer-bg text-white/70">
-      <div className="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-12">
+      <div className="container mx-auto px-5 sm:px-6 py-12 lg:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-8 lg:gap-12">
         {/* Brand */}
-        <div>
-          <Link href="/" className="inline-block mb-6 group">
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          <button
+            onClick={scrollToTop}
+            className="mb-6 group"
+            aria-label="Scroll to top"
+          >
             <Image 
               src="/dental-logo.png" 
               alt="Dr. ADAM HAJJI" 
               width={180} 
               height={54} 
-              className="h-12 w-auto object-contain brightness-0 invert opacity-90 transition-all group-hover:opacity-100 group-hover:scale-[1.02]" 
+              className="h-10 sm:h-12 w-auto object-contain brightness-0 invert opacity-90 transition-all group-hover:opacity-100 group-hover:scale-[1.02]" 
             />
-          </Link>
-          <p className="text-[14px] leading-relaxed mb-8 max-w-sm text-white/60">
+          </button>
+          <p className="text-[13px] sm:text-[14px] leading-relaxed mb-6 max-w-sm text-white/60 text-center lg:text-left">
             At Dr.ADAM HAJJI Dental Clinic, we're dedicated to providing high-quality, personalized dental care. Our skilled team uses the latest technology to ensure comfortable, efficient treatments and beautiful, healthy smiles for life.
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-3 sm:gap-4 justify-center lg:justify-start">
             {socialIcons.map((icon, i) => (
               <a
                 key={i}
@@ -86,7 +90,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={icon.name}
-                className="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center transition-all hover:bg-white hover:text-blue hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center transition-all hover:bg-white hover:text-blue hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
               >
                 {icon.icon}
               </a>
@@ -94,29 +98,31 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links */}
-        <div>
-          <h6 className="font-heading text-[16px] font-bold text-white mb-5">Quick Links</h6>
-          <ul className="flex flex-col gap-3 text-[14px]">
-            <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-            <li><Link href="/services" className="hover:text-white transition-colors">Our Services</Link></li>
-            <li><Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
-            <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-          </ul>
-        </div>
+        {/* Links — Quick Links + Our Services side-by-side on mobile */}
+        <div className="grid grid-cols-2 lg:contents gap-6">
+          <div>
+            <h6 className="font-heading text-[14px] sm:text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h6>
+            <ul className="flex flex-col gap-2.5 sm:gap-3 text-[13px] sm:text-[14px]">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Our Services</Link></li>
+              <li><Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+            </ul>
+          </div>
 
-        {/* Services Links */}
-        <div>
-          <h6 className="font-heading text-[16px] font-bold text-white mb-5">Our Services</h6>
-          <ul className="flex flex-col gap-3 text-[14px]">
-            <li><Link href="/services" className="hover:text-white transition-colors">General Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-white transition-colors">Cosmetic Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-white transition-colors">Pediatric Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-white transition-colors">Restorative Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-white transition-colors">Preventive Dentistry</Link></li>
-            <li><Link href="/services" className="hover:text-white transition-colors">Orthodontics</Link></li>
-          </ul>
+          {/* Services */}
+          <div>
+            <h6 className="font-heading text-[14px] sm:text-[16px] font-bold text-white mb-4 sm:mb-5">Our Services</h6>
+            <ul className="flex flex-col gap-2.5 sm:gap-3 text-[13px] sm:text-[14px]">
+              <li><Link href="/services" className="hover:text-white transition-colors">General Dentistry</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Cosmetic Dentistry</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Pediatric Dentistry</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Restorative</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Preventive</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Orthodontics</Link></li>
+            </ul>
+          </div>
         </div>
 
         {/* Contact */}
@@ -160,19 +166,20 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col gap-1">
-            <span className="text-[13px]">© 2026 – Dr.ADAM HAJJI Dental Clinic. All rights reserved.</span>
-            <span className="text-[12px] text-white/50">
+        <div className="container mx-auto px-5 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3">
+          <div className="flex flex-col items-center sm:items-start gap-1">
+            <span className="text-[12px] sm:text-[13px] text-center sm:text-left">© 2026 – Dr.ADAM HAJJI Dental Clinic. All rights reserved.</span>
+            <span className="text-[11px] sm:text-[12px] text-white/50">
               Designed with love by{" "}
               <a href="https://kamal-aassab.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue transition-colors font-semibold">
                 KAMAL AASSAB
               </a>
             </span>
           </div>
+          {/* Scroll-to-top — hidden on mobile */}
           <button
             onClick={scrollToTop}
-            className={`w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center text-[14px] transition-all hover:bg-white hover:text-navy hover:-translate-y-1 ${
+            className={`hidden sm:flex w-10 h-10 rounded-full bg-navy text-white items-center justify-center text-[14px] transition-all hover:bg-white hover:text-navy hover:-translate-y-1 ${
               showScrollTop ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
             aria-label="Scroll to top"

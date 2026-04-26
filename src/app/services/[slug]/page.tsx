@@ -116,7 +116,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ slug: 
 
 
       {/* ── Hero ── */}
-      <section className="relative h-[75vh] min-h-[500px] flex items-end overflow-hidden">
+      <section className="relative h-[55vh] sm:h-[65vh] lg:h-[75vh] min-h-[380px] flex items-end overflow-hidden">
         <Image src={s.heroImage} alt={s.title} fill className="object-cover" priority sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent" />
         <div className="relative z-10 container mx-auto px-6 pb-14">

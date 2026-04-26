@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Menu, Phone, Sun, Moon } from "lucide-react";
+import { X, Menu } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -26,23 +26,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
-
   // Close mobile menu on route change
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
@@ -57,7 +40,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-6 flex items-center justify-between gap-8">
 
-          {/* Logo */}
+          {/* Logo — smaller on mobile */}
           <Link 
             href="/" 
             onClick={(e) => {
@@ -69,16 +52,14 @@ export default function Navbar() {
             className="relative shrink-0 group" 
             aria-label="Dr. ADAM HAJJI Dental Clinic"
           >
-            <div className={`transition-all duration-500 ${scrolled ? "opacity-100" : "opacity-100"}`}>
-              <Image
-                src="/dental-logo.png"
-                alt="Dr. ADAM HAJJI"
-                width={148}
-                height={44}
-                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
-                priority
-              />
-            </div>
+            <Image
+              src="/dental-logo.png"
+              alt="Dr. ADAM HAJJI"
+              width={148}
+              height={44}
+              className="h-7 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+              priority
+            />
           </Link>
 
           {/* Desktop nav — floating frosted pill (top) → flush inline (scrolled) */}
@@ -148,19 +129,10 @@ export default function Navbar() {
               0710 100 605
             </motion.a>
 
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="w-11 h-11 flex items-center justify-center rounded-full bg-white dark:bg-navy border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue/30 transition-all duration-300 text-navy dark:text-blue-light"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-            </button>
-
             {/* Hamburger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5 rounded-full bg-white border border-slate-200 shadow-sm hover:border-blue/30 transition-all duration-300"
+              className="lg:hidden w-9 h-9 sm:w-11 sm:h-11 flex flex-col items-center justify-center gap-1.5 rounded-full bg-white border border-slate-200 shadow-sm hover:border-blue/30 transition-all duration-300"
               aria-label="Toggle menu"
             >
               <motion.span
@@ -197,70 +169,76 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
 
-            {/* Drawer panel */}
+            {/* Premium Mobile Drawer */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-[min(85vw,380px)] bg-white shadow-[0_0_60px_rgba(13,27,75,0.15)] flex flex-col lg:hidden"
+              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-[min(88vw,400px)] bg-[#F8FAFF] shadow-[0_0_80px_rgba(13,27,75,0.18)] flex flex-col lg:hidden"
             >
-              {/* Drawer header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
-                <span className="font-heading font-black text-navy text-[18px]">Navigation</span>
+              {/* Header */}
+              <div className="flex items-center justify-between px-5 pt-5 pb-4">
+                <Image src="/dental-logo.png" alt="Dr. ADAM HAJJI" width={120} height={36} className="h-7 w-auto object-contain" />
                 <button
                   onClick={() => setMenuOpen(false)}
-                  className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-navy hover:bg-blue hover:text-white transition-all duration-200"
+                  className="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-navy shadow-sm active:scale-95 transition-transform"
                   aria-label="Close menu"
                 >
-                  <X size={18} />
+                  <X size={16} />
                 </button>
               </div>
 
-              {/* Nav links */}
-              <div className="flex-1 overflow-y-auto px-5 py-8 flex flex-col gap-1">
+              {/* Divider */}
+              <div className="mx-5 h-px bg-slate-200 mb-4" />
+
+              {/* Nav Cards */}
+              <div className="flex-1 overflow-y-auto px-4 flex flex-col gap-2">
                 {navLinks.map((link, i) => {
                   const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
                   return (
                     <motion.div
                       key={link.name}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.3 }}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.06, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     >
                       <Link
                         href={link.href}
-                        className={`flex items-center justify-between px-5 py-4 rounded-2xl font-heading font-black text-[18px] transition-all duration-200 ${
+                        className={`relative flex items-center justify-between px-5 py-4 rounded-2xl transition-all duration-200 overflow-hidden ${
                           isActive
-                            ? "bg-blue text-white"
-                            : "text-navy hover:bg-[#F8FAFF]"
+                            ? "bg-blue text-white shadow-[0_8px_24px_rgba(53,102,234,0.25)]"
+                            : "bg-white text-navy border border-slate-100 active:scale-[0.98]"
                         }`}
                       >
-                        <span>{link.name}</span>
-                        {isActive && <span className="w-2 h-2 rounded-full bg-blue" />}
+                        <span className="font-heading font-black text-[17px] tracking-tight">{link.name}</span>
+                        <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black ${
+                          isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-400"
+                        }`}>{String(i + 1).padStart(2, "0")}</span>
+                        {isActive && <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />}
                       </Link>
                     </motion.div>
                   );
                 })}
               </div>
 
-              {/* Drawer CTA footer */}
+              {/* Footer CTAs */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 }}
-                className="px-5 py-6 border-t border-slate-100 flex flex-col gap-3"
+                transition={{ delay: 0.3 }}
+                className="px-4 py-5 flex flex-col gap-3"
               >
                 <a
                   href="tel:0710100605"
-                  className="flex items-center justify-center gap-3 py-4 px-5 rounded-2xl bg-red-600 border border-red-600 text-white font-black text-[15px] shadow-[0_8px_20px_rgba(239,68,68,0.2)] active:bg-red-50 active:text-red-600 active:scale-[0.98] transition-all"
+                  className="flex items-center justify-center gap-2.5 py-4 px-5 rounded-2xl bg-red-600 text-white font-black text-[14px] shadow-[0_8px_24px_rgba(220,38,38,0.25)] active:scale-[0.98] transition-all"
                 >
-                  <span className="tracking-tight uppercase text-[11px] opacity-90">Emergency SOS</span>
-                  0710 100 605
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  SOS · 0710 100 605
                 </a>
                 <Link
                   href="/contact"
-                  className="flex items-center justify-center py-3.5 px-5 rounded-2xl bg-blue text-white font-bold text-[15px] hover:bg-navy transition-all duration-200 shadow-sm"
+                  className="flex items-center justify-center py-3.5 px-5 rounded-2xl bg-navy text-white font-bold text-[14px] active:scale-[0.98] transition-all"
                 >
                   Book Appointment
                 </Link>

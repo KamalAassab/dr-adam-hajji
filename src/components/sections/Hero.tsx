@@ -22,9 +22,9 @@ export default function Hero() {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-12 lg:gap-20 py-12 lg:min-h-[calc(100vh-72px)] relative z-10">
+      <div className="container mx-auto px-5 sm:px-6 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-6 sm:gap-12 lg:gap-20 py-6 sm:py-12 lg:min-h-[calc(100vh-72px)] relative z-10">
         
-        <div className="flex flex-col text-center lg:text-left pt-6 lg:pt-0 relative z-20 order-2 lg:order-1">
+        <div className="flex flex-col text-center lg:text-left pt-2 sm:pt-6 lg:pt-0 relative z-20 order-2 lg:order-1">
 
           {/* Dynamic Headline */}
           <div className="font-heading text-[clamp(40px,7vw,90px)] font-black leading-[0.85] tracking-[-0.05em] text-navy mb-10 lg:mb-14 relative">

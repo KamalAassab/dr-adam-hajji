@@ -69,22 +69,25 @@ export default function TeamSummary() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center gap-3 mb-16 lg:mb-20"
+          className="flex items-center gap-3 mb-10 lg:mb-16 justify-center lg:justify-start"
         >
           <div className="h-px w-8 bg-blue shrink-0" />
           <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">Our Specialist</span>
         </motion.div>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-[38%_1fr] gap-10 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[38%_1fr] gap-8 lg:gap-16 items-center">
 
-          {/* LEFT — Portrait */}
+          {/* RIGHT — Content: appears first on mobile */}
+          <div className="flex flex-col gap-8 lg:gap-12 order-1 lg:order-2">
+
+          {/* LEFT — Portrait: appears second on mobile */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="relative group"
+            className="relative group order-2 lg:order-1"
           >
             {/* Image container */}
             <div className="relative rounded-[32px] overflow-hidden aspect-[4/5] shadow-[0_24px_48px_-12px_rgba(13,27,75,0.16)] bg-slate-50">
@@ -96,26 +99,19 @@ export default function TeamSummary() {
                 className="object-contain object-center transition-transform duration-[1.2s] group-hover:scale-[1.04]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-
-              {/* Base gradient — deepens on hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/30 to-transparent transition-opacity duration-500 group-hover:opacity-100" />
-
-              {/* Name plate — slides up on hover, centered */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500 text-center">
+              <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-8 text-center">
                 <p className="text-[11px] font-black text-blue tracking-[0.2em] uppercase mb-2">Founder &amp; Lead Dentist</p>
-                <h3 className="font-heading text-[22px] lg:text-[26px] font-black text-white leading-tight mb-4">
-                  Dr. HAJJI Adam
-                </h3>
-
-                {/* Social icons — fade in on hover, centered */}
-                <div className="flex gap-4 justify-center opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500 delay-75">
+                <h3 className="font-heading text-[20px] lg:text-[26px] font-black text-white leading-tight mb-4">Dr. HAJJI Adam</h3>
+                {/* Social icons — always visible on mobile, hover on desktop */}
+                <div className="flex gap-3 justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 translate-y-0 lg:translate-y-3 lg:group-hover:translate-y-0 transition-all duration-500 delay-75">
                   {teamSocials.map((social, i) => (
                     <a
                       key={i}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-blue hover:border-blue hover:scale-110 transition-all duration-300 shadow-xl"
+                      className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-blue hover:border-blue hover:scale-110 transition-all duration-300 shadow-xl"
                     >
                       {social.icon}
                     </a>
@@ -125,9 +121,6 @@ export default function TeamSummary() {
             </div>
           </motion.div>
 
-          {/* RIGHT — Content */}
-          <div className="flex flex-col gap-12">
-
             {/* Heading */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -135,17 +128,17 @@ export default function TeamSummary() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-heading text-[clamp(32px,4.5vw,52px)] font-black text-navy leading-[1.08] tracking-tight mb-6">
+              <h2 className="font-heading text-[clamp(28px,4.5vw,52px)] font-black text-navy leading-[1.08] tracking-tight mb-4 text-center lg:text-left">
                 Precision dentistry,<br />
                 <span className="text-blue">personal care.</span>
               </h2>
-              <p className="text-[16px] lg:text-[17px] text-slate-500 leading-[1.8] w-full">
+              <p className="text-[15px] lg:text-[17px] text-slate-500 leading-[1.8] w-full text-center lg:text-left">
                 Dr. Hajji founded the clinic with a single goal: to bring advanced, painless dental care to El Jadida — combining digital technology with a genuinely patient-first approach.
               </p>
             </motion.div>
 
             {/* Stats grid 2×2 */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {stats.map((s, i) => (
                 <motion.div
                   key={i}
@@ -153,13 +146,13 @@ export default function TeamSummary() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 + i * 0.07, duration: 0.6 }}
-                  className="p-6 lg:p-7 rounded-3xl bg-gray-100 border border-slate-100 hover:border-blue/20 hover:bg-blue-pale transition-all duration-400 group"
+                  className="p-5 lg:p-7 rounded-3xl bg-gray-100 border border-slate-100 hover:border-blue/20 hover:bg-blue-pale transition-all duration-400 group"
                 >
-                  <div className="font-heading text-[clamp(36px,4vw,48px)] font-black text-navy leading-none flex items-start justify-center mb-2">
+                  <div className="font-heading text-[clamp(30px,4vw,48px)] font-black text-navy leading-none flex items-start justify-center mb-2">
                     <Counter to={s.value} />
-                    <span className="text-blue text-[clamp(20px,2vw,28px)] font-bold mt-1 ml-0.5">{s.suffix}</span>
+                    <span className="text-blue text-[clamp(18px,2vw,28px)] font-bold mt-1 ml-0.5">{s.suffix}</span>
                   </div>
-                  <p className="text-[12px] lg:text-[13px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-navy transition-colors text-center">
+                  <p className="text-[11px] lg:text-[13px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-navy transition-colors text-center">
                     {s.label}
                   </p>
                 </motion.div>
@@ -172,6 +165,7 @@ export default function TeamSummary() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
+              className="flex justify-center lg:justify-start"
             >
               <Link
                 href="/about"

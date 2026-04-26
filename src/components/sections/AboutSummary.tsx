@@ -16,15 +16,23 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-20 items-center">
 
-          {/* ── Left: Image block ── */}
+          {/* ── Right: Content — appears FIRST on mobile ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="pt-0 lg:pt-0 order-1 lg:order-2"
+          >
+          {/* ── Left: Image block — appears SECOND on mobile ── */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative"
+            className="relative order-2 lg:order-1"
           >
           {/* Main photo — single, clean */}
           <div className="relative rounded-[40px] overflow-hidden aspect-[4/5] w-full max-w-[480px] mx-auto lg:mx-0 shadow-[0_32px_64px_-16px_rgba(13,27,75,0.15)]">
@@ -40,22 +48,13 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue" />
           </div>
         </motion.div>
-
-          {/* ── Right: Content ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="pt-8 lg:pt-0"
-          >
             {/* Eyebrow */}
-            <p className="text-[12px] font-bold text-blue tracking-[0.14em] uppercase mb-5">
+            <p className="text-[12px] font-bold text-blue tracking-[0.14em] uppercase mb-5 text-center lg:text-left">
               About the Clinic
             </p>
 
-            {/* Headline - direct, human */}
-            <h2 className="font-heading text-[clamp(30px,4.5vw,50px)] font-black text-navy leading-[1.08] tracking-tight mb-6">
+            {/* Headline */}
+            <h2 className="font-heading text-[clamp(30px,4.5vw,50px)] font-black text-navy leading-[1.08] tracking-tight mb-6 text-center lg:text-left">
               Dental care that puts<br />
               <span className="text-blue">people first.</span>
             </h2>
@@ -69,7 +68,7 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
             </p>
 
             {/* Stats row */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-10 pb-10 border-b border-slate-100">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-10 pb-10 border-b border-slate-100">
               {stats.map((s, i) => (
                 <motion.div
                   key={i}
@@ -77,6 +76,7 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + i * 0.07 }}
+                  className="text-center lg:text-left"
                 >
                   <p className="font-heading text-[26px] font-black text-navy leading-none mb-1">{s.value}</p>
                   <p className="text-[12px] text-slate-500 font-medium leading-snug">{s.label}</p>
@@ -85,10 +85,10 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 bg-blue text-white px-7 py-3.5 rounded-full font-bold text-[14px] transition-all duration-300 hover:bg-navy hover:shadow-[0_8px_24px_rgba(53,102,234,0.3)]"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-blue text-white px-6 py-3.5 rounded-full font-bold text-[14px] transition-all duration-300 hover:bg-navy hover:shadow-[0_8px_24px_rgba(53,102,234,0.3)]"
               >
                 Book an Appointment
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -97,7 +97,7 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
               {!hideLink && (
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 text-navy font-bold text-[14px] border-b-2 border-transparent hover:border-navy transition-all duration-200 pb-0.5"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-navy font-bold text-[14px] border border-navy/20 rounded-full px-6 py-3.5 hover:bg-navy hover:text-white transition-all duration-200"
                 >
                   Our story
                   <ArrowRight className="w-3.5 h-3.5" />

@@ -57,7 +57,7 @@ export default function GallerySummary({ hideLink = false }: { hideLink?: boolea
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="font-heading text-[clamp(32px,5vw,56px)] font-black text-navy leading-[1.05] tracking-tight"
+              className="font-heading text-[clamp(28px,5vw,56px)] font-black text-navy leading-[1.05] tracking-tight text-center md:text-left"
             >
               Excellence in <br />
               <span className="text-blue text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">every detail.</span>
@@ -82,8 +82,8 @@ export default function GallerySummary({ hideLink = false }: { hideLink?: boolea
           )}
         </div>
 
-        {/* Professional Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Professional Grid Layout — 2 per row on mobile */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
           {images.map((item, i) => (
             <GalleryItem key={i} item={item} index={i} />
           ))}

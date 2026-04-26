@@ -73,6 +73,7 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
           opts={{
             align: "center",
             loop: true,
+            dragFree: false,
           }}
           plugins={[
             Autoplay({
@@ -82,14 +83,14 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
           ]}
           className="w-full"
         >
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-8">
+          <div className="flex flex-col sm:flex-row lg:items-end justify-between gap-5 sm:gap-8 mb-6">
             <div className="max-w-2xl">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.7 }}
-                className="font-heading text-[clamp(28px,4.5vw,42px)] font-black text-navy leading-[1.1] tracking-tight mb-4"
+                className="font-heading text-[clamp(26px,4.5vw,42px)] font-black text-navy leading-[1.1] tracking-tight mb-3 text-center sm:text-left"
               >
                 Loved By <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">Thousands</span>
               </motion.h2>
@@ -99,18 +100,19 @@ export default function TestimonialsSummary({ hideLink = false }: { hideLink?: b
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.7 }}
-                className="text-[15px] text-[#475569] leading-[1.6] font-medium"
+                className="text-[14px] sm:text-[15px] text-[#475569] leading-[1.6] font-medium text-center sm:text-left"
               >
                 Join thousands of happy patients who trust us for gentle, expert care and beautiful smiles.
               </motion.p>
             </div>
 
+            {/* Controls — centered on mobile */}
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.7 }}
-              className="flex items-center gap-4 self-start lg:self-end"
+              className="flex items-center gap-3 justify-center sm:self-start lg:self-end"
             >
               <a
                 href="https://www.google.com/maps/place/Centre+dentaire+ADAM/@33.2365347,-8.523883,18z/data=!4m18!1m9!3m8!1s0xda91db23c98cb57:0xafdc09145c6e6726!2sCentre+dentaire+ADAM!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!3m7!1s0xda91db23c98cb57:0xafdc09145c6e6726!8m2!3d33.236556!4d-8.5237257!9m1!1b1!16s%2Fg%2F11y8rgcl8b!5m1!1e2?entry=ttu"
