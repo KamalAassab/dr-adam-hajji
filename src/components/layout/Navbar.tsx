@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Menu, Phone } from "lucide-react";
+import { X, Menu, Phone, Sun, Moon } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -26,6 +26,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
   // Close mobile menu on route change
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
@@ -41,7 +58,17 @@ export default function Navbar() {
         <div className="container mx-auto px-6 flex items-center justify-between gap-8">
 
           {/* Logo */}
-          <Link href="/" className="relative shrink-0 group" aria-label="Dr. ADAM HAJJI Dental Clinic">
+          <Link 
+            href="/" 
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            className="relative shrink-0 group" 
+            aria-label="Dr. ADAM HAJJI Dental Clinic"
+          >
             <div className={`transition-all duration-500 ${scrolled ? "opacity-100" : "opacity-100"}`}>
               <Image
                 src="/dental-logo.png"
@@ -120,6 +147,15 @@ export default function Navbar() {
               <span className="tracking-tight uppercase text-[11px] opacity-80">SOS</span>
               0710 100 605
             </motion.a>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="w-11 h-11 flex items-center justify-center rounded-full bg-white dark:bg-navy border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue/30 transition-all duration-300 text-navy dark:text-blue-light"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
 
             {/* Hamburger */}
             <button

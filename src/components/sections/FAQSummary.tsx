@@ -225,15 +225,6 @@ export default function FAQSummary() {
             ))}
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-center mt-6 hidden lg:block"
-          >
-            <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.3em]">
-              Scroll horizontally to explore more videos
-            </p>
-          </motion.div>
       </div>
     </div>
   </section>

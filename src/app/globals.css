@@ -25,6 +25,17 @@
   --color-gray-700: #475569;
   --color-footer-bg: #3566ea;
 
+  /* Dark Mode Variables */
+  .dark {
+    --background: #081236;
+    --foreground: #F8FAFF;
+    --card: #0D1B4B;
+    --card-foreground: #F8FAFF;
+    --border: #1E293B;
+    --muted: #0D1B4B;
+    --muted-foreground: #94A3B8;
+  }
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
