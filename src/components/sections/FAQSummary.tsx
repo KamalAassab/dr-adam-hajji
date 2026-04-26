@@ -240,8 +240,8 @@ export default function FAQSummary() {
             </p>
           </motion.div>
         </div>
-
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }
