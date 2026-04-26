@@ -5,8 +5,11 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import toothMascot from "../../../public/tooth_mascot.png";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Hero() {
+  const { t, dir } = useLanguage();
+
   return (
     <section className="relative min-h-[100dvh] flex items-center overflow-hidden pt-[72px] bg-[#F8FAFF]">
       {/* Premium Background Layers */}
@@ -29,20 +32,22 @@ export default function Hero() {
           {/* Dynamic Headline */}
           <div className="font-heading text-[clamp(40px,7vw,90px)] font-black leading-[0.85] tracking-[-0.05em] text-navy mb-10 lg:mb-14 relative">
             <motion.div 
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: dir === "rtl" ? 30 : -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              Exceptional
+              {t.hero.headline_1}
             </motion.div>
             <motion.div 
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: dir === "rtl" ? 30 : -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue to-[#1a44b8]">Dental</span> Care
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue to-[#1a44b8]">
+                {t.hero.eyebrow.split(' ')[0]}
+              </span> {t.hero.headline_2}
             </motion.div>
           </div>
 
@@ -51,13 +56,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative lg:ml-[12%] xl:ml-[18%] mb-12 lg:mb-16 pl-4 lg:pl-10"
+            className={`relative mb-12 lg:mb-16 ${dir === "rtl" ? "lg:mr-[12%] xl:mr-[18%] pr-4 lg:pr-10" : "lg:ml-[12%] xl:ml-[18%] pl-4 lg:pl-10"}`}
           >
             {/* Vertical Accent Line */}
-            <div className="hidden lg:block absolute left-0 top-1 bottom-1 w-[4px] bg-gradient-to-b from-blue via-blue/40 to-transparent rounded-full shadow-[0_0_15px_rgba(53,102,234,0.3)]" />
+            <div className={`hidden lg:block absolute top-1 bottom-1 w-[4px] bg-gradient-to-b from-blue via-blue/40 to-transparent rounded-full shadow-[0_0_15px_rgba(53,102,234,0.3)] ${dir === "rtl" ? "right-0" : "left-0"}`} />
             
             <p className="text-[#475569] text-[16px] lg:text-[19px] max-w-[460px] leading-[1.7] lg:leading-[1.8] font-medium text-center lg:text-left mx-auto lg:mx-0">
-              Personalized treatments meet digital precision. Experience a new standard of dental care where your comfort is our highest priority.
+              {t.hero.description}
             </p>
           </motion.div>
 
@@ -66,7 +71,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center gap-5 lg:gap-8 justify-center lg:justify-start lg:ml-[12%] xl:ml-[18%] w-full max-w-xl lg:max-w-none mx-auto lg:mx-0"
+            className={`flex flex-col sm:flex-row items-center gap-5 lg:gap-8 justify-center lg:justify-start w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 ${dir === "rtl" ? "lg:mr-[12%] xl:mr-[18%]" : "lg:ml-[12%] xl:ml-[18%]"}`}
           >
             <Link
               href="/contact"
@@ -76,13 +81,13 @@ export default function Hero() {
               <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shine_1.8s_ease-out_infinite]" />
               
               <span className="relative z-10 flex items-center">
-                Book Appointment
-                <ArrowRight className="w-5 h-5 ml-2.5 transition-transform duration-500 group-hover:translate-x-2" />
+                {t.hero.bookAppointment}
+                <ArrowRight className={`w-5 h-5 transition-transform duration-500 ${dir === "rtl" ? "mr-2.5 group-hover:-translate-x-2 rotate-180" : "ml-2.5 group-hover:translate-x-2"}`} />
               </span>
             </Link>
 
-            <div className="flex items-center gap-4 lg:gap-5 bg-white/40 backdrop-blur-md pr-6 lg:pr-7 p-2 lg:p-2.5 rounded-full border border-white/50 shadow-xl transition-all hover:bg-white/60 w-full sm:w-auto justify-center sm:justify-start">
-              <div className="flex -space-x-3 lg:-space-x-3.5 ml-1">
+            <div className={`flex items-center gap-4 lg:gap-5 bg-white/40 backdrop-blur-md p-2 lg:p-2.5 rounded-full border border-white/50 shadow-xl transition-all hover:bg-white/60 w-full sm:w-auto justify-center sm:justify-start ${dir === "rtl" ? "pl-6 lg:pl-7" : "pr-6 lg:pr-7"}`}>
+              <div className={`flex -space-x-3 lg:-space-x-3.5 ${dir === "rtl" ? "mr-1" : "ml-1"}`}>
                 {[
                   "https://randomuser.me/api/portraits/men/32.jpg",
                   "https://randomuser.me/api/portraits/men/44.jpg",
@@ -94,8 +99,8 @@ export default function Hero() {
                 ))}
               </div>
               <div className="text-left py-0.5 lg:py-1">
-                <strong className="block font-heading font-black text-[16px] lg:text-[18px] leading-none text-navy mb-0.5 tracking-tight whitespace-nowrap">4.9/5 Rating</strong>
-                <span className="text-[10px] lg:text-[12px] text-gray-500 font-bold uppercase tracking-wider whitespace-nowrap">Trusted by Patients</span>
+                <strong className="block font-heading font-black text-[16px] lg:text-[18px] leading-none text-navy mb-0.5 tracking-tight whitespace-nowrap">{t.hero.rating}</strong>
+                <span className="text-[10px] lg:text-[12px] text-gray-500 font-bold uppercase tracking-wider whitespace-nowrap">{t.hero.trusted}</span>
               </div>
             </div>
           </motion.div>

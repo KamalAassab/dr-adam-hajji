@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   description: "Dr.ADAM HAJJI Dental Clinic offers exceptional dental care for the whole family in El Jadida. From routine checkups to advanced treatments, our compassionate team ensures your smile stays healthy.",
 };
 
+import { LanguageProvider } from "@/i18n/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,16 +31,18 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fr"
       className={`${alata.variable} ${ibmPlexArabic.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans">
-        <SmoothScrolling>
-          <Navbar />
-          <main className="flex-1 overflow-hidden">{children}</main>
-          <Footer />
-        </SmoothScrolling>
+        <LanguageProvider>
+          <SmoothScrolling>
+            <Navbar />
+            <main className="flex-1 overflow-hidden">{children}</main>
+            <Footer />
+          </SmoothScrolling>
+        </LanguageProvider>
       </body>
     </html>
   );

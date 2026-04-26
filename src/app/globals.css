@@ -96,4 +96,9 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
+
+  /* RTL overrides for Arabic Font */
+  html[dir="rtl"] body, html[dir="rtl"] * {
+    font-family: var(--font-arabic) !important;
+  }
 }
