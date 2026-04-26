@@ -18,14 +18,6 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-20 items-center">
 
-          {/* ── Right: Content — appears FIRST on mobile ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="pt-0 lg:pt-0 order-1 lg:order-2"
-          >
           {/* ── Left: Image block — appears SECOND on mobile ── */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -34,20 +26,29 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative order-2 lg:order-1"
           >
-          {/* Main photo — single, clean */}
-          <div className="relative rounded-[40px] overflow-hidden aspect-[4/5] w-full max-w-[480px] mx-auto lg:mx-0 shadow-[0_32px_64px_-16px_rgba(13,27,75,0.15)]">
-            <Image
-              src="/gallery/PIC1.jpg"
-              alt="Dr. ADAM HAJJI Dental Clinic"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 90vw, 45vw"
-              priority
-            />
-            {/* Thin left accent */}
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue" />
-          </div>
-        </motion.div>
+            {/* Main photo — single, clean */}
+            <div className="relative rounded-[40px] overflow-hidden aspect-[4/5] w-full max-w-[480px] mx-auto lg:mx-0 shadow-[0_32px_64px_-16px_rgba(13,27,75,0.15)]">
+              <Image
+                src="/gallery/PIC1.jpg"
+                alt="Dr. ADAM HAJJI Dental Clinic"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 90vw, 45vw"
+                priority
+              />
+              {/* Thin left accent */}
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue" />
+            </div>
+          </motion.div>
+
+          {/* ── Right: Content — appears FIRST on mobile ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="pt-0 lg:pt-0 order-1 lg:order-2"
+          >
             {/* Eyebrow */}
             <p className="text-[12px] font-bold text-blue tracking-[0.14em] uppercase mb-5 text-center lg:text-left">
               About the Clinic
@@ -60,10 +61,10 @@ export default function AboutSummary({ hideLink = false }: { hideLink?: boolean 
             </h2>
 
             {/* Body - two short, honest paragraphs */}
-            <p className="text-slate-600 text-[16px] leading-[1.75] mb-5 max-w-[520px]">
+            <p className="text-slate-600 text-[16px] leading-[1.75] mb-5 max-w-[520px] text-center lg:text-left mx-auto lg:mx-0">
               Dr. ADAM HAJJI founded this clinic with one principle: every patient deserves a clear diagnosis, honest options, and treatment carried out with precision - not rushed, not oversold.
             </p>
-            <p className="text-slate-600 text-[16px] leading-[1.75] mb-10 max-w-[520px]">
+            <p className="text-slate-600 text-[16px] leading-[1.75] mb-10 max-w-[520px] text-center lg:text-left mx-auto lg:mx-0">
               Based in El Jadida, we combine over 15 years of clinical experience with fully digital workflows - from cone-beam 3D imaging to same-day prosthetics - so results are predictable and visits are efficient.
             </p>
 
