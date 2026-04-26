@@ -114,7 +114,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-[85%] max-w-[450px] xl:max-w-[700px] aspect-[4/5] scale-100 xl:scale-110 transform-gpu lg:origin-bottom z-10 mx-auto"
+            className="relative w-[50%] sm:w-[55%] lg:w-[85%] max-w-[240px] sm:max-w-[300px] lg:max-w-[450px] xl:max-w-[700px] aspect-[4/5] scale-100 xl:scale-110 transform-gpu lg:origin-bottom z-10 mx-auto"
           >
             <Image
               src={toothMascot}
