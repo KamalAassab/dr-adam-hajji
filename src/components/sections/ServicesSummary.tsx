@@ -51,7 +51,7 @@ function Card({ service, className = "", titleCls = "text-[19px]", pad = "p-6", 
           <h3 className={`font-heading font-black text-white leading-tight mb-3 ${titleCls}`}>{service.title}</h3>
           <p className="text-white/65 text-[13px] leading-[1.6] mb-3">{service.desc}</p>
           <div className={`flex flex-wrap gap-1.5 mb-4 ${dir === "rtl" ? "justify-end" : ""}`}>
-            {service.details.map((d, i) => (
+            {service.details.map((d: string, i) => (
               <span key={i} className="text-[11px] font-semibold text-white/85 bg-white/[0.12] backdrop-blur-sm rounded-full px-3 py-[5px] border border-white/[0.12]">{d}</span>
             ))}
           </div>
