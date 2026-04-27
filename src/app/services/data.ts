@@ -105,7 +105,7 @@ export const servicesData: Record<Language, Record<string, ServiceData>> = {
       steps: [
         { title: "Première visite", body: "Une familiarisation en douceur — examen visuel uniquement, sans instruments, pour instaurer confiance et confort.", photo: "https://images.pexels.com/photos/3845806/pexels-photo-3845806.jpeg?auto=compress&cs=tinysrgb&w=800" },
         { title: "Soins préventifs", body: "Nettoyage professionnel, fluor et scellements de sillons pour protéger les dents définitives en cours d'éruption.", photo: "https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=800" },
-        { title: "Dépistage orthodontique précoce", body: "Nous surveillons le développement de la mâchoire dès l'âge de 7 ans pour intercepter les problèmes tôt.", photo: "https://images.pexels.com/photos/3845799/pexels-photo-3845799.jpeg?auto=compress&cs=tinysrgb&w=800" },
+        { title: "Dépistage orthodontique précoce", body: "Nous surveillons le développement de la mâchoire dès l'âge de 7 ans pour intercepter les problèmes tôt.", photo: "https://images.pexels.com/photos/52527/dentist-pain-borowac-cure-52527.jpeg?auto=compress&cs=tinysrgb&w=800" },
         { title: "Traitement restaurateur", body: "Des techniques et une anesthésie adaptées aux enfants garantissent une expérience positive et sans douleur.", photo: "https://images.pexels.com/photos/3845811/pexels-photo-3845811.jpeg?auto=compress&cs=tinysrgb&w=800" },
       ],
       benefits: ["Environnement à faible anxiété", "Protection par fluor et scellement", "Orthodontie interceptive précoce", "Option de présence des parents", "Philosophie axée sur la prévention"],
@@ -205,7 +205,7 @@ export const servicesData: Record<Language, Record<string, ServiceData>> = {
       steps: [
         { title: "First Visit", body: "A gentle familiarisation — visual check only, no instruments, building trust and comfort.", photo: "https://images.pexels.com/photos/3845806/pexels-photo-3845806.jpeg?auto=compress&cs=tinysrgb&w=800" },
         { title: "Preventive Care", body: "Professional cleaning, fluoride, and fissure sealants to protect erupting permanent teeth.", photo: "https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=800" },
-        { title: "Early Orthodontic Screening", body: "We monitor jaw development from age 7 to intercept issues early.", photo: "https://images.pexels.com/photos/3845799/pexels-photo-3845799.jpeg?auto=compress&cs=tinysrgb&w=800" },
+        { title: "Early Orthodontic Screening", body: "We monitor jaw development from age 7 to intercept issues early.", photo: "https://images.pexels.com/photos/52527/dentist-pain-borowac-cure-52527.jpeg?auto=compress&cs=tinysrgb&w=800" },
         { title: "Restorative Treatment", body: "Child-appropriate techniques and anaesthesia ensure a pain-free, positive experience.", photo: "https://images.pexels.com/photos/3845811/pexels-photo-3845811.jpeg?auto=compress&cs=tinysrgb&w=800" },
       ],
       benefits: ["Low-anxiety environment", "Fluoride & sealant protection", "Early interceptive orthodontics", "Parent-present option", "Preventive-first philosophy"],
