@@ -1,154 +1,208 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const images = [
-  { src: "/gallery/PIC1.jpg", alt: "Treatment Room", category: "Clinical", size: "large" },
-  { src: "/gallery/PIC2.jpg", alt: "Consultation Area", category: "Comfort", size: "medium" },
-  { src: "/gallery/PIC3.jpg", alt: "Digital Equipment", category: "Technology", size: "medium" },
-  { src: "/gallery/PIC4.jpg", alt: "Patient Care", category: "Service", size: "small" },
-  { src: "/gallery/PIC5.jpg", alt: "Clinic Interior", category: "Modern", size: "small" },
+  { src: "/gallery/PIC1.jpg", alt: "Treatment Room",    category: "Clinical" },
+  { src: "/gallery/PIC2.jpg", alt: "Consultation Area", category: "Comfort" },
+  { src: "/gallery/PIC3.jpg", alt: "Digital Equipment", category: "Technology" },
+  { src: "/gallery/PIC4.jpg", alt: "Patient Care",      category: "Service" },
+  { src: "/gallery/PIC5.jpg", alt: "Clinic Interior",   category: "Modern" },
 ];
 
-function GalleryItem({ item, index }: { item: typeof images[0]; index: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.05, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-slate-50 group ${
-        item.size === "large" ? "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto" : 
-        item.size === "medium" ? "aspect-[4/5]" : "aspect-square"
-      }`}
-    >
-      <Image
-        src={item.src}
-        alt={item.alt}
-        fill
-        className="object-cover transition-transform duration-1000 group-hover:scale-110"
-        sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
-      />
-      {/* Glass Tag */}
-      <div className="absolute bottom-4 left-4 right-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hidden md:block">
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-2xl">
-          <p className="text-[10px] font-black text-white/60 uppercase tracking-widest mb-0.5">{item.category}</p>
-          <p className="text-[14px] font-bold text-white">{item.alt}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+const localT = {
+  fr: {
+    eyebrow: "Parcours Visuel",
+    headline_1: "L'excellence dans",
+    headline_2: "chaque détail.",
+    btnExplore: "Explorer la Galerie",
+    of: "sur",
+  },
+  en: {
+    eyebrow: "Visual Journey",
+    headline_1: "Excellence in",
+    headline_2: "every detail.",
+    btnExplore: "Explore Full Gallery",
+    of: "of",
+  },
+  ar: {
+    eyebrow: "رحلة بصرية",
+    headline_1: "التميز في",
+    headline_2: "كل تفصيلة.",
+    btnExplore: "استكشف المعرض",
+    of: "من",
+  },
+};
 
 export default function GallerySummary({ hideLink = false }: { hideLink?: boolean }) {
   const { lang, dir } = useLanguage();
+  const t = localT[lang as keyof typeof localT] ?? localT.fr;
+  const [active, setActive] = useState(0);
 
-  const localT = {
-    fr: {
-      eyebrow: "Parcours Visuel",
-      headline_1: "L'excellence dans",
-      headline_2: "chaque détail.",
-      btnExplore: "Explorer la Galerie"
-    },
-    en: {
-      eyebrow: "Visual Journey",
-      headline_1: "Excellence in",
-      headline_2: "every detail.",
-      btnExplore: "Explore Full Gallery"
-    },
-    ar: {
-      eyebrow: "رحلة بصرية",
-      headline_1: "التميز في",
-      headline_2: "كل تفصيلة.",
-      btnExplore: "استكشف المعرض"
-    }
-  }[lang];
+  const prev = useCallback(() => setActive(i => (i - 1 + images.length) % images.length), []);
+  const next = useCallback(() => setActive(i => (i + 1) % images.length), []);
 
   return (
-    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className={`flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 ${dir === "rtl" ? "text-right" : "text-left"}`}>
-          <div className="max-w-2xl">
+
+        {/* ── Header ── */}
+        <div className={`flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 ${dir === "rtl" ? "text-right" : "text-left"}`}>
+          <div>
             <motion.div
               initial={{ opacity: 0, x: dir === "rtl" ? 16 : -16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className={`flex items-center gap-3 mb-5 md:justify-start justify-center ${dir === "rtl" ? "md:justify-end" : ""}`}
+              className={`flex items-center gap-3 mb-4 ${dir === "rtl" ? "justify-end md:justify-end" : "justify-center md:justify-start"}`}
             >
               <div className="h-px w-8 bg-blue shrink-0" />
-              <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">{localT.eyebrow}</span>
+              <span className="text-[11px] font-black text-blue tracking-[0.22em] uppercase">{t.eyebrow}</span>
             </motion.div>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className={`font-heading text-[clamp(28px,5vw,56px)] font-black text-navy leading-[1.05] tracking-tight text-center ${dir === "rtl" ? "md:text-right" : "md:text-left"}`}
+              transition={{ duration: 0.7 }}
+              className={`font-heading text-[clamp(28px,4.5vw,52px)] font-black text-navy leading-[1.07] tracking-tight text-center ${dir === "rtl" ? "md:text-right" : "md:text-left"}`}
             >
-              {localT.headline_1} <br className="hidden md:block" />
-              <span className="text-blue text-transparent bg-clip-text bg-gradient-to-r from-blue to-[#2854C8]">{localT.headline_2}</span>
+              {t.headline_1}{" "}
+              <span className="text-blue">{t.headline_2}</span>
             </motion.h2>
           </div>
 
           {!hideLink && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.15 }}
               className="flex justify-center"
             >
               <Link
                 href="/gallery"
-                className={`group inline-flex items-center gap-3 bg-navy text-white px-8 py-4 rounded-full font-bold text-[15px] hover:bg-blue transition-all duration-300 shadow-xl shadow-navy/10 ${dir === "rtl" ? "flex-row-reverse" : ""}`}
+                className={`group inline-flex items-center gap-2.5 border-2 border-navy text-navy px-7 py-3 rounded-full font-bold text-[14px] hover:bg-navy hover:text-white transition-all duration-300 ${dir === "rtl" ? "flex-row-reverse" : ""}`}
               >
-                {localT.btnExplore}
-                <ArrowRight className={`w-5 h-5 transition-transform ${dir === "rtl" ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"}`} />
+                {t.btnExplore}
+                <ArrowRight className={`w-4 h-4 transition-transform ${dir === "rtl" ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"}`} />
               </Link>
             </motion.div>
           )}
         </div>
 
-        {/* Unified Professional Grid — 2 columns on mobile, 3-4 on desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-          {images.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.8 }}
-              className="relative aspect-square rounded-[24px] overflow-hidden bg-slate-50 group border border-slate-100 shadow-sm"
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-              
-              {/* Refined Metadata Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-3 left-3 right-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-2xl">
-                  <p className="text-[10px] font-bold text-white/80 uppercase tracking-widest leading-none mb-1">{item.category}</p>
-                  <p className="text-[13px] font-black text-white leading-tight truncate">{item.alt}</p>
+        {/* ── Carousel ── */}
+        <div className="relative">
+
+          {/* Main Stage */}
+          <div className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden bg-slate-100 shadow-2xl shadow-navy/10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={images[active].src}
+                  alt={images[active].alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 85vw"
+                  priority
+                />
+                {/* Bottom vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
+
+                {/* Caption */}
+                <div className={`absolute bottom-6 ${dir === "rtl" ? "right-7" : "left-7"}`}>
+                  <span className="block text-[10px] font-black text-white/50 tracking-[0.25em] uppercase mb-1">
+                    {images[active].category}
+                  </span>
+                  <span className="block text-[18px] md:text-[22px] font-black text-white leading-tight">
+                    {images[active].alt}
+                  </span>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Counter */}
+                <div className={`absolute bottom-6 ${dir === "rtl" ? "left-7" : "right-7"} flex items-baseline gap-1`}>
+                  <span className="font-heading text-[28px] font-black text-white leading-none">
+                    {String(active + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-white/40 text-[13px] font-semibold">/ {String(images.length).padStart(2, "0")}</span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex items-center justify-between mt-6 gap-4">
+            {/* Dot indicators */}
+            <div className="flex items-center gap-2">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  aria-label={`Go to image ${i + 1}`}
+                  className={`transition-all duration-300 rounded-full ${
+                    i === active
+                      ? "w-8 h-2.5 bg-blue"
+                      : "w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Arrow controls */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={dir === "rtl" ? next : prev}
+                aria-label="Previous image"
+                className="w-11 h-11 rounded-full border-2 border-slate-200 flex items-center justify-center text-navy hover:border-blue hover:text-blue hover:bg-blue/5 transition-all duration-200"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={dir === "rtl" ? prev : next}
+                aria-label="Next image"
+                className="w-11 h-11 rounded-full bg-navy flex items-center justify-center text-white hover:bg-blue transition-all duration-200"
+              >
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Thumbnail Strip */}
+          <div className="flex gap-3 mt-5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+            {images.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                aria-label={`View ${img.alt}`}
+                className={`relative shrink-0 rounded-xl overflow-hidden transition-all duration-300 ${
+                  i === active
+                    ? "ring-2 ring-blue ring-offset-2 opacity-100"
+                    : "opacity-50 hover:opacity-80"
+                }`}
+                style={{ width: 80, height: 56 }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* Background elements */}
-      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-blue/5 rounded-full blur-3xl pointer-events-none" />
     </section>
   );
 }
