@@ -64,7 +64,7 @@ function VideoCard({ videoId, index }: { videoId: string; index: number }) {
   );
 }
 
-export default function FAQSummary() {
+export default function FAQSummary({ hideLink = false }: { hideLink?: boolean }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { t, dir } = useLanguage();
 
