@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dr. ADAM HAJJI Dental Clinic Website
 
-## Getting Started
+A premium, modern, and fully responsive dental clinic website built with the latest web technologies. This project showcases the services, team, and expertise of Dr. ADAM HAJJI Dental Clinic located in El Jadida.
 
-First, run the development server:
+![Dr. ADAM HAJJI Dental Clinic](public/dental-logo.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- **Modern UI/UX**: Stunning design with a focus on professional aesthetics and user experience.
+- **Responsive Design**: Fully optimized for all devices (mobile, tablet, desktop).
+- **Internationalization (i18n)**: Built-in support for multiple languages (French and English).
+- **Smooth Scrolling**: Enhanced browsing experience using [Lenis](https://github.com/darkroomengineering/lenis).
+- **Interactive Sections**:
+  - **Hero**: Engaging entry point with clear call-to-action.
+  - **Services**: Detailed overview of dental treatments and expertise.
+  - **About**: Insight into the clinic's mission and philosophy.
+  - **Team**: Meet the professional staff.
+  - **Gallery**: Visual showcase of the clinic's facilities and results.
+  - **Testimonials**: Social proof from satisfied patients.
+  - **Pricing**: Transparent treatment pricing cards.
+  - **FAQ**: Answers to common patient questions.
+  - **Contact**: Easy-to-use contact form and location details.
+- **Performance Optimized**: Built with Next.js 16 and React 19 for blazing-fast performance.
+- **Premium Animations**: Fluid transitions and micro-interactions powered by [Framer Motion](https://www.framer.com/motion/).
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Carousel**: [Embla Carousel](https://www.embla-carousel.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Fonts**: [Google Fonts (Alata)](https://fonts.google.com/specimen/Alata)
+- **Smooth Scroll**: [Lenis](https://lenis.darkroom.engineering/)
+
+## 📂 Project Structure
+
+```text
+src/
+├── app/              # Next.js App Router (pages and layouts)
+├── components/       # React components
+│   ├── layout/       # Global components (Navbar, Footer, SmoothScrolling)
+│   ├── sections/     # Landing page sections (Hero, Services, etc.)
+│   └── ui/           # Reusable UI primitives (Buttons, Cards, etc.)
+├── i18n/             # Translation logic and language context
+├── lib/              # Utility functions and shared logic
+└── public/           # Static assets (images, logos, etc.)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18+ 
+- npm / yarn / pnpm
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/KamalAassab/dr-adam-hajji.git
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+4. **Open the project**:
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Build & Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To create a production build:
+```bash
+npm run build
+```
+
+To start the production server:
+```bash
+npm start
+```
+
+## 📄 License
+
+This project is private and intended for Dr. ADAM HAJJI Dental Clinic.
+
+---
+Developed with ❤️ by the Antigravity AI.
